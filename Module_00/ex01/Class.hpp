@@ -13,28 +13,47 @@
 #ifndef PHONEBOOK_H
 # define PHONEBOOK_H
 
+#include <iostream>
 #include <string>
 
 class Contact
 {
-public:
-	std::string first_name;
-	std::string last_name;
-	std::string nickname;
-	std::string phone_number;
-	std::string darkest_secret;
+	public:
+		Contact(void);
+		~Contact(void);
 
-	Contact(void);
-	~Contact(void);
+		void	set_first_name(std::string value);
+		void	set_last_name(std::string value);
+		void	set_nickname(std::string value);
+		void	set_phone_number(std::string value);
+		void	set_darkest_secret(std::string value);
+		std::string	get_first_name(void) const;
+		std::string	get_last_name(void) const;
+		std::string	get_nickname(void) const;
+		std::string	get_phone_number(void) const;
+		std::string	get_darkest_secret(void) const;
+
+	private:
+		std::string _first_name;
+		std::string _last_name;
+		std::string _nickname;
+		std::string _phone_number;
+		std::string _darkest_secret;
 };
 
 class Phonebook
 {
-public:
-	Contact directory[8];
+	public:
+		Phonebook(void);
+		~Phonebook(void);
 
-	Phonebook(void);
-	~Phonebook(void);
+	//void	set_directory(std::string field, Contact value, int index);
+	//Contact	get_directory(int index) const;
+	int		add_function(int index);
+	int 	search_function(void);
+
+	private:
+		Contact _directory[8];
 };
 
 #endif //PHONEBOOK_H

@@ -10,14 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
-#include <iostream>
+#include "Class.hpp"
 
-int	main(void)
+int	main()
 {
 	std::string command;
+	Phonebook	phonebook;
+	int 		index = 0;
 
-	std::cout << "Please, enter a command [ADD, SEARCH or EXIT] : ";
-	std::cin >> command;
-	std::cout << "You enter : " << command << std::endl;
+	while (command != "EXIT")
+	{
+		if (command == "ADD")
+		{
+			if (phonebook.add_function(index))
+				return (1);
+			index++;
+		}
+		if (command == "SEARCH")
+			if (phonebook.search_function())
+				return (1);
+/*		if (command == "EMPTY")
+			voir_sujet;//Toute autre entrée est ignorée
+		else
+			voir_sujet;//Toute autre entrée est ignorée*/
+		std::cout << "Please, enter a command [ADD, SEARCH or EXIT] : ";
+		if (!getline(std::cin, command))
+			return (1);
+		std::cout << "You entered : " << command << std::endl;
+		if (index > 7)
+			index = 0;
+	}
+	return (0);
 }
