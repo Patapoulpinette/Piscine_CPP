@@ -53,7 +53,7 @@ void	Contact::set_nickname(std::string value)
 	return;
 }
 
-void	Contact::set_phone_number(std::string value)//TODO check if it is only digits et +
+void	Contact::set_phone_number(std::string value)
 {
 	this->_phone_number = value;
 	return;

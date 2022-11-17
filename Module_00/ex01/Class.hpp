@@ -55,4 +55,6 @@ class Phonebook
 		Contact _directory[8];
 };
 
+int is_only_digits(std::string str);
+
 #endif //PHONEBOOK_H

@@ -29,14 +29,9 @@ int	main()
 		if (command == "SEARCH")
 			if (phonebook.search_function())
 				return (1);
-/*		if (command == "EMPTY")
-			voir_sujet;//Toute autre entrée est ignorée
-		else
-			voir_sujet;//Toute autre entrée est ignorée*/
 		std::cout << "Please, enter a command [ADD, SEARCH or EXIT] : ";
 		if (!getline(std::cin, command))
 			return (1);
-		std::cout << "You entered : " << command << std::endl;
 		if (index > 7)
 			index = 0;
 	}

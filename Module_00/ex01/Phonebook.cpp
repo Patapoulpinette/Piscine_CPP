@@ -32,26 +32,65 @@ int	Phonebook::add_function(int index)
 {
 	std::string answer;
 
-	std::cout << "Enter your first name: ";
-	if (!getline(std::cin, answer))
-		return (1);
-	this->_directory[index].set_first_name(answer);
-	std::cout << "Enter your last name: ";
-	if (!getline(std::cin, answer))
-		return (1);
-	this->_directory[index].set_last_name(answer);
-	std::cout << "Enter your nickname: ";
-	if (!getline(std::cin, answer))
-		return (1);
-	this->_directory[index].set_nickname(answer);
-	std::cout << "Enter your phone number: ";
-	if (!getline(std::cin, answer))
-		return (1);
-	this->_directory[index].set_phone_number(answer);
-	std::cout << "Enter your darkest secret: ";
-	if (!getline(std::cin, answer))
-		return (1);
-	this->_directory[index].set_darkest_secret(answer);
+	while (answer.empty())
+	{
+		std::cout << "Enter your first name: ";
+		if (!getline(std::cin, answer))
+			return (1);
+		if (answer.empty())
+			std::cout << "Empty line, try again" << std::endl;
+		this->_directory[index].set_first_name(answer);
+	}
+	answer.clear();
+	while (answer.empty())
+	{
+		std::cout << "Enter your last name: ";
+		if (!getline(std::cin, answer))
+			return (1);
+		if (answer.empty())
+			std::cout << "Empty line, try again" << std::endl;
+		this->_directory[index].set_last_name(answer);
+	}
+	answer.clear();
+	while (answer.empty())
+	{
+		std::cout << "Enter your nickname: ";
+		if (!getline(std::cin, answer))
+			return (1);
+		if (answer.empty())
+			std::cout << "Empty line, try again" << std::endl;
+		this->_directory[index].set_nickname(answer);
+	}
+	answer.clear();
+	while (answer.empty())
+	{
+		std::cout << "Enter your phone number: ";
+		if (!getline(std::cin, answer))
+			return (1);
+		if (answer.empty())
+			std::cout << "Empty line, try again" << std::endl;
+		if (answer.size() != 10)
+		{
+			std::cout << "Wrong format: 10 numbers needed without spaces [ex: 012356789]" << std::endl;
+			answer.clear();
+		}
+		if (!is_only_digits(answer))
+		{
+			std::cout << "Enter only digits" << std::endl;
+			answer.clear();
+		}
+		this->_directory[index].set_phone_number(answer);
+	}
+	answer.clear();
+	while (answer.empty())
+	{
+		std::cout << "Enter your darkest secret: ";
+		if (!getline(std::cin, answer))
+			return (1);
+		if (answer.empty())
+			std::cout << "Empty line, try again" << std::endl;
+		this->_directory[index].set_darkest_secret(answer);
+	}
 	return (0);
 }
 
@@ -92,13 +131,30 @@ int	Phonebook::search_function(void)
 		else
 			std::cout << "Please, enter only 1 digit" << std::endl;
 	}
-	//TODO if contact empty ne paas afficher
-	std::cout << "Contact " << index << std::endl;
-	std::cout << "First name: " << this->_directory[index -1].get_first_name() << std::endl;
-	std::cout << "Last name: " << this->_directory[index -1].get_last_name() << std::endl;
-	std::cout << "Nickname: " << this->_directory[index -1].get_nickname() << std::endl;
-	std::cout << "Phone number: " << this->_directory[index -1].get_phone_number() << std::endl;
-	std::cout << "Darkest secret: " << this->_directory[index -1].get_darkest_secret() << std::endl;
+	if (this->_directory[index -1].get_first_name() != "")
+	{
+		std::cout << "Contact " << index << std::endl;
+		std::cout << "First name: " << this->_directory[index - 1].get_first_name() << std::endl;
+		std::cout << "Last name: " << this->_directory[index - 1].get_last_name() << std::endl;
+		std::cout << "Nickname: " << this->_directory[index - 1].get_nickname() << std::endl;
+		std::cout << "Phone number: " << this->_directory[index - 1].get_phone_number() << std::endl;
+		std::cout << "Darkest secret: " << this->_directory[index - 1].get_darkest_secret() << std::endl;
+	}
+	else
+		std::cout << "Empty contact" << std::endl;
 
 	return (0);
+}
+
+int is_only_digits(std::string str)
+{
+	int i = 0;
+
+	while (str[i])
+	{
+		if (!std::isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
