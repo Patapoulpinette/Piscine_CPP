@@ -94,11 +94,11 @@ int	Phonebook::add_function(int index)
 	return (0);
 }
 
-//TODO limit strings to 10 char and if string > 10 set the last char to .
 int	Phonebook::search_function(void)
 {
 	int 		index = 0;
 	std::string	input;
+	std::string	output;
 
 	std::cout << "┌──────────┬──────────┬──────────┬──────────┐" << std::endl;
 	std::cout << "│     index│first name│ last name│  nickname│" << std::endl;
@@ -107,10 +107,31 @@ int	Phonebook::search_function(void)
 	{
 		if (this->_directory[index].get_first_name() != "")
 		{
-			std::cout << "│" << std::setw(10) << index + 1 << "│" << std::setw(10)
-					  << this->_directory[index].get_first_name() << "│" << std::setw(10)
-					  << this->_directory[index].get_last_name() << "│" << std::setw(10)
-					  << this->_directory[index].get_nickname() << "│" << std::endl;
+			std::cout << "│" << std::setw(10) << index + 1 << "│";
+			if (this->_directory[index].get_first_name().size() > 10)
+			{
+				output.assign(this->_directory[index].get_first_name(), 0, 9);
+				output.append(".");
+				std::cout << output << "│";
+			}
+			else
+				std::cout << std::setw(10) << this->_directory[index].get_first_name() << "│";
+			if (this->_directory[index].get_last_name().size() > 10)
+			{
+				output.assign(this->_directory[index].get_last_name(), 0, 9);
+				output.append(".");
+				std::cout << output << "│";
+			}
+			else
+				std::cout << std::setw(10) << this->_directory[index].get_last_name() << "│";
+			if (this->_directory[index].get_nickname().size() > 10)
+			{
+				output.assign(this->_directory[index].get_nickname(), 0, 9);
+				output.append(".");
+				std::cout << output << "│" << std::endl;
+			}
+			else
+				std::cout << std::setw(10) << this->_directory[index].get_nickname() << "│" << std::endl;
 		}
 		index++;
 	}
