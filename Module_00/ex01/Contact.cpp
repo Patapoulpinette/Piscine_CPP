@@ -17,11 +17,11 @@
 Contact::Contact(void)
 {
 	std::cout << "Contact constructor called" << std::endl;
-	this->_first_name = "          ";
-	this->_last_name = "          ";
-	this->_nickname = "          ";
-	this->_phone_number = "          ";
-	this->_darkest_secret = "          ";
+	this->_first_name = "";
+	this->_last_name = "";
+	this->_nickname = "";
+	this->_phone_number = "";
+	this->_darkest_secret = "";
 	return;
 }
 
@@ -53,7 +53,7 @@ void	Contact::set_nickname(std::string value)
 	return;
 }
 
-void	Contact::set_phone_number(std::string value)
+void	Contact::set_phone_number(std::string value)//TODO check if it is only digits et +
 {
 	this->_phone_number = value;
 	return;

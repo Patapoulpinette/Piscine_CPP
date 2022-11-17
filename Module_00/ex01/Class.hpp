@@ -13,8 +13,9 @@
 #ifndef PHONEBOOK_H
 # define PHONEBOOK_H
 
-#include <iostream>
-#include <string>
+# include <iostream>
+# include <string>
+# include <iomanip>
 
 class Contact
 {
@@ -47,10 +48,8 @@ class Phonebook
 		Phonebook(void);
 		~Phonebook(void);
 
-	//void	set_directory(std::string field, Contact value, int index);
-	//Contact	get_directory(int index) const;
-	int		add_function(int index);
-	int 	search_function(void);
+		int	add_function(int index);
+		int search_function(void);
 
 	private:
 		Contact _directory[8];
