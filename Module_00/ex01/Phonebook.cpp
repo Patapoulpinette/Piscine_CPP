@@ -31,7 +31,7 @@ PhoneBook::~PhoneBook()
 /// REGISTERS A NEW CONTACT
 /// Ask to the user to complete some informations and add them in the contact directory
 /// \param index
-/// \return
+/// \return 1 if there is an error, else 0
 int	PhoneBook::add_function(int index)
 {
 	std::string answer;
@@ -75,7 +75,7 @@ int	PhoneBook::add_function(int index)
 			std::cout << "Empty line, try again" << std::endl;
 		if (answer.size() != 10)
 		{
-			std::cout << "Wrong format: 10 numbers needed without spaces [ex: 012356789]" << std::endl;
+			std::cout << "Wrong format: 10 numbers needed without spaces [ex: 0123456789]" << std::endl;
 			answer.clear();
 		}
 		if (!is_only_digits(answer))
@@ -101,7 +101,7 @@ int	PhoneBook::add_function(int index)
 /// DISPLAYS THE REQUESTED CONTACT
 /// Displays the array of contact if it is not empty,
 /// then ask which contact to display and displays it if it is not empty
-/// \return
+/// \return 1 if there is an error, else 0
 int	PhoneBook::search_function(void)
 {
 	int 		index = 0;
