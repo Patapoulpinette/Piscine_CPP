@@ -15,7 +15,7 @@
 int	main()
 {
 	std::string command;
-	Phonebook	phonebook;
+	PhoneBook	phonebook;
 	int 		index = 0;
 
 	while (command != "EXIT")

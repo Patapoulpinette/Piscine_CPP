@@ -42,11 +42,11 @@ class Contact
 		std::string _darkest_secret;
 };
 
-class Phonebook
+class PhoneBook
 {
 	public:
-		Phonebook(void);
-		~Phonebook(void);
+		PhoneBook(void);
+		~PhoneBook(void);
 
 		int	add_function(int index);
 		int search_function(void);

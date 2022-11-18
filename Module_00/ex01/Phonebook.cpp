@@ -1,9 +1,9 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.class.cpp                                :+:      :+:    :+:   */
+/*   Phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbouron <dbouron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dbouron <dbouron@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 13:31:59 by dbouron           #+#    #+#             */
 /*   Updated: 2022/11/15 13:31:59 by dbouron          ###   ########.fr       */
@@ -14,14 +14,14 @@
 
 // CONSTRUCTOR -----------------------------------------------------------------
 
-Phonebook::Phonebook()
+PhoneBook::PhoneBook()
 {
 	return;
 }
 
 // DESTRUCTOR ------------------------------------------------------------------
 
-Phonebook::~Phonebook()
+PhoneBook::~PhoneBook()
 {
 	return;
 }
@@ -32,7 +32,7 @@ Phonebook::~Phonebook()
 /// Ask to the user to complete some informations and add them in the contact directory
 /// \param index
 /// \return
-int	Phonebook::add_function(int index)
+int	PhoneBook::add_function(int index)
 {
 	std::string answer;
 
@@ -102,7 +102,7 @@ int	Phonebook::add_function(int index)
 /// Displays the array of contact if it is not empty,
 /// then ask which contact to display and displays it if it is not empty
 /// \return
-int	Phonebook::search_function(void)
+int	PhoneBook::search_function(void)
 {
 	int 		index = 0;
 	std::string	input;
