@@ -16,7 +16,6 @@
 
 Contact::Contact(void)
 {
-	std::cout << "Contact constructor called" << std::endl;
 	this->_first_name = "";
 	this->_last_name = "";
 	this->_nickname = "";
@@ -29,7 +28,6 @@ Contact::Contact(void)
 
 Contact::~Contact(void)
 {
-	std::cout << "Contact destructor called" << std::endl;
 	return;
 }
 
