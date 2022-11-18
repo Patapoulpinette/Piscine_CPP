@@ -11,3 +11,19 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+
+Zombie::Zombie()
+{
+	return;
+}
+
+Zombie::~Zombie()
+{
+	return;
+}
+
+void Zombie::announce()
+{
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	return;
+}

@@ -10,3 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.hpp"
+
+
+/// Creates a zombie, gives him a name,
+/// and returns it so it can be used outside the scope of the function
+/// \param name
+/// \return pointer of Zombie class
+Zombie* newZombie(std::string name)
+{
+	//faire un new pour allouer dynamiquement de la memoire
+}

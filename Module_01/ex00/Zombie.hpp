@@ -10,14 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PISCINE_CPP_ZOMBIE_HPP
-#define PISCINE_CPP_ZOMBIE_HPP
+#ifndef ZOMBIE_HPP
+#define ZOMBIE_HPP
 
 
 class Zombie
 {
+	public:
+		Zombie(void);
+		~Zombie(void);
 
+		void	announce(void);
+
+	private:
+		std::string	_name;
 };
 
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
 
-#endif //PISCINE_CPP_ZOMBIE_HPP
+#endif //ZOMBIE_HPP
