@@ -35,7 +35,7 @@ Phonebook::~Phonebook()
 int	Phonebook::add_function(int index)
 {
 	std::string answer;
-56892741
+
 	while (answer.empty())
 	{
 		std::cout << "Enter your first name: ";
@@ -156,7 +156,7 @@ int	Phonebook::search_function(void)
 
 		//Ask which contact to display and displays it
 		index = -1;
-		while (index < 0 || index > 8)
+		while (index < 1 || index > 8)
 		{
 			std::cout << "Enter contact index to display: ";
 			if (!getline(std::cin, input))
@@ -164,7 +164,7 @@ int	Phonebook::search_function(void)
 			if (input.size() == 1 && std::isdigit(input[0]))
 			{
 				index = stoi(input);
-				if (index < 0 || index > 8)
+				if (index < 1 || index > 8)
 					std::cout << "contact " << index << " doesn't exist. Enter a contact index between 1 to 8."
 							  << std::endl;
 			} else
