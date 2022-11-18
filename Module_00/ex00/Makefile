@@ -16,7 +16,7 @@ NAME = megaphone
 #                               FILES and PATHS                                #
 # **************************************************************************** #
 
-SRCS =	megaphone.cpp
+SRCS =	$(shell find . -name "*.cpp")
 
 CPPFLAGS = -Wall -Wextra -Werror
 CPPFLAGS += -std=c++98
