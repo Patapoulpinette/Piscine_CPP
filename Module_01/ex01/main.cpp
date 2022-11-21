@@ -17,11 +17,15 @@ int	main()
 	Zombie*	new_horde;
 
 	new_horde = zombieHorde(8, "Sarah");
+	if (!new_horde)
+		return (1);
 	for (int n = 0; n < 8; n++)
 		new_horde[n].announce();
 	delete [] new_horde;
 
 	new_horde = zombieHorde(2, "Jean");
+	if (!new_horde)
+		return (1);
 	for (int n = 0; n < 2; n++)
 		new_horde[n].announce();
 	delete [] new_horde;
