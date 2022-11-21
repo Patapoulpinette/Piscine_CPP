@@ -19,5 +19,6 @@
 /// \return pointer of Zombie class
 Zombie* newZombie(std::string name)
 {
-	//faire un new pour allouer dynamiquement de la memoire
+	Zombie*	new_zombie = new Zombie(name);
+	return (new_zombie);
 }

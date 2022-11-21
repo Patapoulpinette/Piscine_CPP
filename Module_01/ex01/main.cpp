@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouron <dbouron@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 14:35:02 by dbouron           #+#    #+#             */
-/*   Updated: 2022/11/18 14:35:02 by dbouron          ###   ########.fr       */
+/*   Created: 2022/11/18 14:31:59 by dbouron           #+#    #+#             */
+/*   Updated: 2022/11/18 14:31:59 by dbouron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-
-/// Creates a zombie, gives him a name and makes him introduce himself
-/// \param name
-void randomChump(std::string name)
+int	main()
 {
-	Zombie	random_chump(name);
-	random_chump.announce();
-	return;
+	Zombie*	new_horde;
+
+	new_horde = zombieHorde(8, "Sarah");
+	for (int n = 0; n < 8; n++)
+		new_horde[n].announce();
+	delete [] new_horde;
+
+	new_horde = zombieHorde(2, "Jean");
+	for (int n = 0; n < 2; n++)
+		new_horde[n].announce();
+	delete [] new_horde;
+	return (0);
 }
