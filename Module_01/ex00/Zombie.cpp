@@ -24,7 +24,7 @@ Zombie::~Zombie()
 	return;
 }
 
-void Zombie::announce()
+void Zombie::announce() const
 {
 	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 	return;
