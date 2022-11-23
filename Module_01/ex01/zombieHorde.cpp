@@ -20,7 +20,7 @@ Zombie*	zombieHorde(int N, std::string name)
 		return (NULL);
 	}
 	Zombie* horde = new Zombie[N];
-	if (horde == nullptr)
+	if (horde == NULL)
 	{
 		std::cout << "Memory allocation failed" << std::endl;
 		return (NULL);
