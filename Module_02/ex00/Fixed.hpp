@@ -19,16 +19,16 @@ class Fixed
 {
 	public:
 		Fixed();
-		Fixed (const Fixed &);
+		Fixed (const Fixed &src);
 		~Fixed();
-		Fixed &operator=(const Fixed&);
+		Fixed &operator=(const Fixed &rhs);
 
 		void	setRawBits(int const raw);
 		int		getRawBits(void) const;
 
 	private:
 		int					_width;
-		static const int	_binary;
+		static const int	_binary = 8;
 };
 
 #endif //FIXED_HPP

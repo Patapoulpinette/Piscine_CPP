@@ -18,10 +18,10 @@ Fixed::Fixed() : _width(0)
 	return;
 }
 
-Fixed::Fixed(const Fixed &) : _width(0)
+Fixed::Fixed(const Fixed &src)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	getRawBits();
+	*this = src;
 	return;
 }
 
@@ -31,10 +31,10 @@ Fixed::~Fixed()
 	return;
 }
 
-Fixed &Fixed::operator=(const Fixed &)
+Fixed &Fixed::operator=(const Fixed &rhs)
 {
 	std::cout << "Copy assigment operator called" << std::endl;
-	getRawBits();
+	this->_width = rhs.getRawBits();
 	return (*this);
 }
 
