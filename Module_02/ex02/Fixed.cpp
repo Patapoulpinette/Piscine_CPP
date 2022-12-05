@@ -12,51 +12,37 @@
 
 #include "Fixed.hpp"
 
+// Constructors & destructor ---------------------------------------------------
+
 Fixed::Fixed() : _number(0)
 {
-	std::cout << "Default constructor called" << std::endl;
 	return;
 }
 
-Fixed::Fixed(int const value)
+Fixed::Fixed(int const int_value)
 {
-	std::cout << "Int constructor called" << std::endl;
-	this->_number = value << this->_bits;
+	this->_number = int_value << this->_bits;
 	return;
 }
 
-Fixed::Fixed(float const value)
+Fixed::Fixed(float const float_value)
 {
-	std::cout << "Float constructor called" << std::endl;
-	this->_number = roundf(value * (1 << this->_bits));
+	this->_number = roundf(float_value * (1 << this->_bits));
 	return;
 }
 
 Fixed::Fixed(const Fixed &src)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 	return;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
 	return;
 }
 
-Fixed &Fixed::operator=(const Fixed &rhs)
-{
-	std::cout << "Copy assigment operator called" << std::endl;
-	this->_number = rhs.getRawBits();
-	return (*this);
-}
-
-std::ostream &	operator<<(std::ostream & o, Fixed const & rhs)
-{
-	o << rhs.toFloat();
-	return (o);
-}
+// Other functions -------------------------------------------------------------
 
 void	Fixed::setRawBits(const int raw)
 {
@@ -79,11 +65,126 @@ int	Fixed::toInt() const
 	return (this->_number >> this->_bits);
 }
 
+// Operators -------------------------------------------------------------------
 
-//A revoir !
-//bool Fixed::operator<(const Fixed &rhs) { /* do actual comparison */ }
-//bool Fixed::operator>(const Fixed &rhs) { return (rhs < *this); }
-//bool Fixed::operator<=(const Fixed &rhs) { return !(*this > rhs); }
-//bool Fixed::operator>=(const Fixed &rhs) { return !(*this < rhs); }
-//bool Fixed::operator==(const Fixed &rhs) { /* do actual comparison */ }
-//bool Fixed::operator!=(const Fixed &rhs) { return !(*this == rhs); }
+Fixed &Fixed::operator=(const Fixed &rhs)
+{
+	this->_number = rhs.getRawBits();
+	return (*this);
+}
+
+bool Fixed::operator<(const Fixed &rhs) const
+{
+	return (this->_number < rhs._number);
+}
+
+bool Fixed::operator>(const Fixed &rhs) const
+{
+	return (this->_number > rhs._number);
+}
+
+bool Fixed::operator<=(const Fixed &rhs) const
+{
+	return (this->_number <= rhs._number);
+}
+
+bool Fixed::operator>=(const Fixed &rhs) const
+{
+	return (this->_number >= rhs._number);
+}
+
+bool Fixed::operator==(const Fixed &rhs) const
+{
+	return (this->_number == rhs._number);
+}
+
+bool Fixed::operator!=(const Fixed &rhs) const
+{
+	return (this->_number != rhs._number);
+}
+
+Fixed	Fixed::operator+(const Fixed &rhs)
+{
+	return Fixed(this->toFloat() + rhs.toFloat());
+}
+
+Fixed	Fixed::operator-(const Fixed &rhs)
+{
+	return Fixed(this->toFloat() - rhs.toFloat());
+}
+
+Fixed	Fixed::operator*(const Fixed &rhs)
+{
+	return Fixed(this->toFloat() * rhs.toFloat());
+}
+
+Fixed	Fixed::operator/(const Fixed &rhs)
+{
+	return Fixed(this->toFloat() / rhs.toFloat());
+}
+
+Fixed &	Fixed::operator++()
+{
+	++this->_number;
+	return (*this);
+}
+
+Fixed &	Fixed::operator--()
+{
+	--this->_number;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	old = *this; // copy old value
+	operator++();	// prefix increment
+	return old;		// return old value
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	old = *this; // copy old value
+	operator--();	// prefix decrement
+	return old;		// return old value
+}
+
+std::ostream &	operator<<(std::ostream & o, Fixed const & rhs)
+{
+	o << rhs.toFloat();
+	return (o);
+}
+
+// Min and max -----------------------------------------------------------------
+
+Fixed	Fixed::min(Fixed &value1, Fixed &value2)
+{
+	if (value1 < value2)
+		return (value1);
+	else
+		return (value2);
+}
+
+Fixed	Fixed::min(const Fixed &value1, const Fixed &value2)
+{
+	if (value1 < value2)
+		return (value1);
+	else
+		return (value2);
+}
+
+Fixed	Fixed::max(Fixed &value1, Fixed &value2)
+{
+	if (value1 > value2)
+		return (value1);
+	else
+		return (value2);
+}
+
+Fixed	Fixed::max(const Fixed &value1, const Fixed &value2)
+{
+	if (value1 > value2)
+		return (value1);
+	else
+		return (value2);
+}
