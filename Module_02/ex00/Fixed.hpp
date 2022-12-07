@@ -19,7 +19,7 @@ class Fixed
 {
 	public:
 		Fixed();
-		Fixed (const Fixed &src);
+		Fixed(const Fixed &src);
 		~Fixed();
 		Fixed &operator=(const Fixed &rhs);
 

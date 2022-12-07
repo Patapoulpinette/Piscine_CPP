@@ -22,7 +22,7 @@ class Fixed
 		Fixed();
 		Fixed(int const int_value);
 		Fixed(float const float_value);
-		Fixed (const Fixed &src);
+		Fixed(const Fixed &src);
 		~Fixed();
 
 		Fixed &	operator=(const Fixed &rhs);
