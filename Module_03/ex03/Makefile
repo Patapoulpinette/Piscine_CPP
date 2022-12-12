@@ -6,7 +6,7 @@
 #    By: dbouron <dbouron@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/18 11:20:24 by dbouron           #+#    #+#              #
-#    Updated: 2022/12/12 17:08:53 by dbouron          ###   ########.fr        #
+#    Updated: 2022/12/12 19:29:28 by dbouron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,8 @@ NAME = DiamondTrap
 SRCS =	$(shell find . -name "*.cpp")
 HEADFILE = $(shell find . -name "*.hpp")
 
-CPPFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -Wall -Wextra -Werror -Wshadow
 CPPFLAGS += -std=c++98
-CPPFLAGS += -fsanitize=address -g3
 
 # **************************************************************************** #
 #                                    COLORS                                    #
