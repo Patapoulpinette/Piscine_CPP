@@ -14,7 +14,7 @@
 
 FragTrap::FragTrap() : ClapTrap()
 {
-	std::cout << "FragTrap " << this->get_Name() << " default constructor called\n";
+	std::cout << "FragTrap " << _Name << " default constructor called\n";
 	_HitPoints = 100;
 	_EnergyPoints = 100;
 	_AttackDamage = 30;
@@ -23,7 +23,7 @@ FragTrap::FragTrap() : ClapTrap()
 
 FragTrap::FragTrap(const std::string name) : ClapTrap(name)
 {
-	std::cout << "FragTrap " << this->get_Name() << " constructor called\n";
+	std::cout << "FragTrap " << _Name << " constructor called\n";
 	_HitPoints = 100;
 	_EnergyPoints = 100;
 	_AttackDamage = 30;
@@ -32,28 +32,28 @@ FragTrap::FragTrap(const std::string name) : ClapTrap(name)
 
 FragTrap::FragTrap(const FragTrap &src)
 {
-	std::cout << "FragTrap " << this->get_Name() << " copy constructor called\n";
+	std::cout << "FragTrap " << _Name << " copy constructor called\n";
 	*this = src;
 	return ;
 }
 
 FragTrap::~FragTrap()
 {
-	std::cout << "FragTrap " << this->get_Name() << " destructor called" << std::endl;
+	std::cout << "FragTrap " << _Name << " destructor called" << std::endl;
 	return ;
 }
 
 void	FragTrap::highFivesGuys()
 {
-	std::cout << "FragTrap " << this->get_Name() << " ask for a high five\n";
+	std::cout << "FragTrap " << _Name << " ask for a high five\n";
 	return ;
 }
 
 FragTrap &	FragTrap::operator=(const FragTrap &rhs)
 {
-	this->_Name = rhs.get_Name();
-	this->_HitPoints = rhs.get_HitPoints();
-	this->_EnergyPoints = rhs.get_EnergyPoints();
-	this->_AttackDamage = rhs.get_AttackDamage();
+	_Name = rhs._Name;
+	_HitPoints = rhs._HitPoints;
+	_EnergyPoints = rhs._EnergyPoints;
+	_AttackDamage = rhs._AttackDamage;
 	return (*this);
 }

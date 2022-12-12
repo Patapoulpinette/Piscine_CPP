@@ -12,7 +12,7 @@
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _Name(NULL), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
+ClapTrap::ClapTrap() : _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 {
 	std::cout << "ClapTrap default constructor called\n";
 	return ;
@@ -20,29 +20,29 @@ ClapTrap::ClapTrap() : _Name(NULL), _HitPoints(10), _EnergyPoints(10), _AttackDa
 
 ClapTrap::ClapTrap(std::string name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0)
 {
-	std::cout << "ClapTrap " << this->_Name << " constructor called\n";
+	std::cout << "ClapTrap " << _Name << " constructor called\n";
 	return ;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &src)
 {
-	std::cout << "ClapTrap " << this->_Name << " copy constructor called\n";
+	std::cout << "ClapTrap " << _Name << " copy constructor called\n";
 	*this = src;
 	return ;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap " << this->_Name << " destructor called" << std::endl;
+	std::cout << "ClapTrap " << _Name << " destructor called" << std::endl;
 	return ;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &rhs)
 {
-	this->_Name = rhs.get_Name();
-	this->_HitPoints = rhs.get_HitPoints();
-	this->_EnergyPoints = rhs.get_EnergyPoints();
-	this->_AttackDamage = rhs.get_AttackDamage();
+	_Name = rhs._Name;
+	_HitPoints = rhs._HitPoints;
+	_EnergyPoints = rhs._EnergyPoints;
+	_AttackDamage = rhs._AttackDamage;
 	return (*this);
 }
 
@@ -68,49 +68,49 @@ int	ClapTrap::get_AttackDamage() const
 
 void	ClapTrap::attack(const std::string &target)
 {
-	if (this->get_EnergyPoints() > 0 && this->get_HitPoints() > 0)
+	if (_EnergyPoints > 0 && _HitPoints > 0)
 	{
-		std::cout << "ClapTrap " << this->get_Name() << " attacks " << target
-				<< ", causing " << this->get_AttackDamage() << " points of damage\n";
-		this->_EnergyPoints--;
+		std::cout << "ClapTrap " << _Name << " attacks " << target
+				<< ", causing " << _AttackDamage << " points of damage\n";
+		_EnergyPoints--;
 	}
 	else
 	{
-		if (this->get_EnergyPoints() <= 0)
-			std::cout << "ClapTrap " << this->get_Name() << " have not enough energy to attack\n";
-		if (this->get_HitPoints() <= 0)
-			std::cout << "ClapTrap " << this->get_Name() << " have not enough hit points to attack\n";
+		if (_EnergyPoints <= 0)
+			std::cout << "ClapTrap " << _Name << " have not enough energy to attack\n";
+		if (_HitPoints <= 0)
+			std::cout << "ClapTrap " << _Name << " have not enough hit points to attack\n";
 	}
 	return ;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "ClapTrap " << this->get_Name() << " take " << amount << " points of damage\n";
-	if ((this->get_HitPoints() - (int) amount) <= 0)
+	std::cout << "ClapTrap " << _Name << " take " << amount << " points of damage\n";
+	if ((_HitPoints - (int) amount) <= 0)
 	{
-		this->_HitPoints = 0;
-		std::cout << "ClapTrap " << this->get_Name() << " died\n";
+		_HitPoints = 0;
+		std::cout << "ClapTrap " << _Name << " died\n";
 	}
 	else
-		this->_HitPoints -= amount;
+		_HitPoints -= amount;
 	return ;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->get_EnergyPoints() > 0 && this->get_HitPoints() > 0)
+	if (_EnergyPoints > 0 && _HitPoints > 0)
 	{
-		std::cout << "ClapTrap " << this->get_Name() << " recovers " << amount << " hit points\n";
-		this->_HitPoints += amount;
-		this->_EnergyPoints--;
+		std::cout << "ClapTrap " << _Name << " recovers " << amount << " hit points\n";
+		_HitPoints += amount;
+		_EnergyPoints--;
 	}
 	else
 	{
-		if (this->get_EnergyPoints() <= 0)
-			std::cout << "ClapTrap " << this->get_Name() << " have not enough energy to hill\n";
-		if (this->get_HitPoints() <= 0)
-			std::cout << "ClapTrap " << this->get_Name() << " have not enough hit points to hill\n";
+		if (_EnergyPoints <= 0)
+			std::cout << "ClapTrap " << _Name << " have not enough energy to hill\n";
+		if (_HitPoints <= 0)
+			std::cout << "ClapTrap " << _Name << " have not enough hit points to hill\n";
 	}
 	return ;
 }
@@ -118,10 +118,10 @@ void	ClapTrap::beRepaired(unsigned int amount)
 void	ClapTrap::attributes() const
 {
 	std::cout << "┌──────────────────────┐\n";
-	std::cout << "│" << std::setw(15) << this->get_Name() << std::setw(11) << "│\n";
+	std::cout << "│" << std::setw(15) << _Name << std::setw(11) << "│\n";
 	std::cout << "├───────────────┬──────┤\n";
-	std::cout << "│ Hit points    │" << std::setw(5) << this->get_HitPoints() << " │\n";
-	std::cout << "│ Energy points │" << std::setw(5) << this->get_EnergyPoints() << " │\n";
-	std::cout << "│ Attack damage │" << std::setw(5) << this->get_AttackDamage() << " │\n";
+	std::cout << "│ Hit points    │" << std::setw(5) << _HitPoints << " │\n";
+	std::cout << "│ Energy points │" << std::setw(5) << _EnergyPoints << " │\n";
+	std::cout << "│ Attack damage │" << std::setw(5) << _AttackDamage << " │\n";
 	std::cout << "└───────────────┴──────┘" << std::endl;
 }
