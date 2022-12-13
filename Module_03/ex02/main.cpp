@@ -54,6 +54,15 @@ int main()
 	Robinson.attack(Agatha.get_Name());
 	Agatha.takeDamage(Robinson.get_AttackDamage());
 	Agatha.highFivesGuys();
+	Agatha.attack(Robinson.get_Name());
+	Robinson.takeDamage(Agatha.get_AttackDamage());
+	Agatha.attack(Robinson.get_Name());
+	Robinson.takeDamage(Agatha.get_AttackDamage());
+	Agatha.attack(Robinson.get_Name());
+	Robinson.takeDamage(Agatha.get_AttackDamage());
+	Agatha.attack(Robinson.get_Name());
+	Robinson.takeDamage(Agatha.get_AttackDamage());
+	Robinson.guardGate();
 
 	Cunegonde.attributes();
 	Alfonsor.attributes();

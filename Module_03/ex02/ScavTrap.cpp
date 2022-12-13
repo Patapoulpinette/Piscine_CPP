@@ -14,7 +14,7 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	std::cout << "ScavTrap " << _Name << " default constructor called\n";
+	std::cout << "ScavTrap default constructor called\n";
 	_HitPoints = 100;
 	_EnergyPoints = 50;
 	_AttackDamage = 20;
@@ -54,16 +54,24 @@ void	ScavTrap::attack(const std::string &target)
 	else
 	{
 		if (_EnergyPoints <= 0)
-			std::cout << "ScavTrap " << _Name << " have not enough energy to attack\n";
+			std::cout << "ScavTrap " << _Name << " has not enough energy to attack\n";
 		if (_HitPoints <= 0)
-			std::cout << "ScavTrap " << _Name << " have not enough hit points to attack\n";
+			std::cout << "ScavTrap " << _Name << " has not enough hit points to attack\n";
 	}
 	return ;
 }
 
 void	ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap " << _Name << " enter in Gate Keeper mode\n";
+	if (_EnergyPoints > 0 && _HitPoints > 0)
+		std::cout << "ScavTrap " << _Name << " enter in Gate Keeper mode\n";
+	else
+	{
+		if (_EnergyPoints <= 0)
+			std::cout << "ScavTrap " << _Name << " has not enough energy to enter in Gate Keeper mode\n";
+		if (_HitPoints <= 0)
+			std::cout << "ScavTrap " << _Name << " has not enough hit points to enter in Gate Keeper mode\n";
+	}
 	return ;
 }
 

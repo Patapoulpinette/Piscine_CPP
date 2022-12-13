@@ -14,7 +14,7 @@
 
 DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap()
 {
-	std::cout << "DiamondTrap " << _Name << " default constructor called\n";
+	std::cout << "DiamondTrap default constructor called\n";
 	_HitPoints = FragTrap::_HitPoints;
 	_EnergyPoints = ScavTrap::_EnergyPoints;
 	_AttackDamage = FragTrap::_AttackDamage;

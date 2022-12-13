@@ -77,9 +77,9 @@ void	ClapTrap::attack(const std::string &target)
 	else
 	{
 		if (_EnergyPoints <= 0)
-			std::cout << "ClapTrap " << _Name << " have not enough energy to attack\n";
+			std::cout << "ClapTrap " << _Name << " has not enough energy to attack\n";
 		if (_HitPoints <= 0)
-			std::cout << "ClapTrap " << _Name << " have not enough hit points to attack\n";
+			std::cout << "ClapTrap " << _Name << " has not enough hit points to attack\n";
 	}
 	return ;
 }
@@ -108,9 +108,9 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	else
 	{
 		if (_EnergyPoints <= 0)
-			std::cout << "ClapTrap " << _Name << " have not enough energy to hill\n";
+			std::cout << "ClapTrap " << _Name << " has not enough energy to heal\n";
 		if (_HitPoints <= 0)
-			std::cout << "ClapTrap " << _Name << " have not enough hit points to hill\n";
+			std::cout << "ClapTrap " << _Name << " has not enough hit points to heal\n";
 	}
 	return ;
 }

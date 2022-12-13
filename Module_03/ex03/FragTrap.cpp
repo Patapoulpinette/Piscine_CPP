@@ -14,7 +14,7 @@
 
 FragTrap::FragTrap() : ClapTrap()
 {
-	std::cout << "FragTrap " << _Name << " default constructor called\n";
+	std::cout << "FragTrap default constructor called\n";
 	_HitPoints = 100;
 	_EnergyPoints = 100;
 	_AttackDamage = 30;
@@ -45,7 +45,15 @@ FragTrap::~FragTrap()
 
 void	FragTrap::highFivesGuys()
 {
-	std::cout << "FragTrap " << _Name << " ask for a high five\n";
+	if (_EnergyPoints > 0 && _HitPoints > 0)
+		std::cout << "FragTrap " << _Name << " asks for a high five\n";
+	else
+	{
+		if (_EnergyPoints <= 0)
+			std::cout << "FragTrap " << _Name << " has not enough energy to ask for a high five\n";
+		if (_HitPoints <= 0)
+			std::cout << "FragTrap " << _Name << " has not enough hit points to ask for a high five\n";
+	}
 	return ;
 }
 
