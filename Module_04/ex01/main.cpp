@@ -18,7 +18,7 @@ int main()
 {
 	const Animal *array[10];
 
-	for (int index = 0; index < 10; index++)
+	for (int index = 0; index < 4; index++)
 	{
 		if (index % 2 == 0)
 		{
@@ -41,8 +41,10 @@ int main()
 	Dog test;
 	{
 		Dog tmp = test;
+		std::cout << tmp.getDogBrain()->getIdeas(4) << std::endl;
 	}
 	std::cout << test.getType() << std::endl;
+	std::cout << test.getDogBrain()->getIdeas(2) << std::endl;
 
 	return (0);
 }

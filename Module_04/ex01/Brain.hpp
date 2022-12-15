@@ -18,15 +18,17 @@
 
 class Brain
 {
-public:
-	Brain();
-	Brain(const Brain &src);
-	~Brain();
+	public:
+		Brain();
+		Brain(const Brain &src);
+		~Brain();
 
-	Brain	&operator=(const Brain &rhs);
+		Brain	&operator=(const Brain &rhs);
 
-private:
-	std::string	_ideas[100];
+		std::string getIdeas(unsigned int index) const;
+
+	private:
+		std::string	_ideas[100];
 
 };
 

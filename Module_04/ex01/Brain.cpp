@@ -15,6 +15,13 @@
 Brain::Brain()
 {
 	std::cout << "Brain default constructor called\n";
+	//Som examples
+	_ideas[0] = "Sleep";
+	_ideas[1] = "Eat";
+	_ideas[2] = "Play";
+	_ideas[3] = "Drink";
+	_ideas[4] = "Run";
+	_ideas[5] = "Go for a walk";
 }
 
 Brain::Brain(const Brain &src)
@@ -33,4 +40,9 @@ Brain	&Brain::operator=(const Brain &rhs)
 	for (int i = 0; i < 100; i++)
 		_ideas[i] = rhs._ideas[i];
 	return (*this);
+}
+
+std::string Brain::getIdeas(unsigned int index) const
+{
+	return _ideas[index];
 }

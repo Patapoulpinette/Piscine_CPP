@@ -28,8 +28,8 @@ class Animal
 		const std::string	&getType() const;
 		virtual void		makeSound() const;
 
-protected:
-			std::string	_type;
+	protected:
+		std::string	_type;
 };
 
 #endif //ANIMAL_HPP
