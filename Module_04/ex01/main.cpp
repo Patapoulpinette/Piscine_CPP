@@ -13,16 +13,36 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 
 int main()
 {
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const Animal *array[10];
 
-	delete(j);
-	delete(i);
+	for (int index = 0; index < 10; index++)
+	{
+		if (index % 2 == 0)
+		{
+			array[index] = new Dog();
+			std::cout << array[index]->getType() << std::endl;
+			array[index]->makeSound();
+			delete(array[index]);
+		}
+		else
+		{
+			array[index] = new Cat();
+			std::cout << array[index]->getType() << std::endl;
+			array[index]->makeSound();
+			delete(array[index]);
+		}
+	}
+
+	std::cout << "---------------------------------------" << std::endl;
+
+	Dog test;
+	{
+		Dog tmp = test;
+	}
+	std::cout << test.getType() << std::endl;
 
 	return (0);
 }

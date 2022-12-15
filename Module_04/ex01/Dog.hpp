@@ -23,7 +23,7 @@ class Dog : public Animal
 	public:
 		Dog();
 		Dog(const Dog &src);
-		~Dog();
+		virtual ~Dog();
 
 		Dog	&operator=(const Dog &rhs);
 
