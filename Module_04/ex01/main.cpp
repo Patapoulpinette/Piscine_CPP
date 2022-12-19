@@ -38,7 +38,7 @@ int main()
 
 	std::cout << "---------------------------------------" << std::endl;
 
-	Dog test;
+	Dog test, pouet;
 	{
 		test.getDogBrain()->setIdeas(0, "Sleep");//Some examples
 		test.getDogBrain()->setIdeas(1, "Eat");
@@ -54,6 +54,15 @@ int main()
 	std::cout << test.getType() << std::endl;
 	std::cout << test.getDogBrain()->getIdeas(2) << std::endl;
 	std::cout << test.getDogBrain()->getIdeas(6) << std::endl;
+	pouet = test;
+	std::cout << "TEST :\n";
+	std::cout << test.getType() << std::endl;
+	std::cout << test.getDogBrain()->getIdeas(1) << std::endl;
+	std::cout << test.getDogBrain()->getIdeas(3) << std::endl;
+	std::cout << "POUET :\n";
+	std::cout << pouet.getType() << std::endl;
+	std::cout << pouet.getDogBrain()->getIdeas(1) << std::endl;
+	std::cout << pouet.getDogBrain()->getIdeas(3) << std::endl;
 
 	return (0);
 }
