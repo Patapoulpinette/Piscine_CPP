@@ -63,6 +63,12 @@ int main()
 	std::cout << pouet.getType() << std::endl;
 	std::cout << pouet.getDogBrain()->getIdeas(1) << std::endl;
 	std::cout << pouet.getDogBrain()->getIdeas(3) << std::endl;
+	test.getDogBrain()->setIdeas(3, "Drink water");
+	std::cout << "TEST_2 :\n";
+	std::cout << test.getDogBrain()->getIdeas(3) << std::endl;
+	std::cout << "POUET_2 :\n";
+	std::cout << pouet.getDogBrain()->getIdeas(3) << std::endl;
+
 
 	return (0);
 }

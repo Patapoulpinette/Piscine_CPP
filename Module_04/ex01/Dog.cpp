@@ -35,6 +35,7 @@ Dog &Dog::operator=(const Dog &rhs)
 {
 	std::cout << "Assignation operator called\n";
 	_type = rhs._type;
+	delete(_dogBrain);
 	_dogBrain = new Brain(*rhs._dogBrain);
 	return (*this);
 }
