@@ -50,5 +50,5 @@ AMateria *AMateria::clone() const
 
 void AMateria::use(ICharacter &target)
 {
-
+	std::cout << _type << " used on " << target.getName() << std::endl;
 }

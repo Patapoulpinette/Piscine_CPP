@@ -27,11 +27,22 @@ MateriaSource::~MateriaSource()
 
 }
 
-void MateriaSource::learnMateria(AMateria *)
+void MateriaSource::learnMateria(AMateria *m)
 {
 	// Copie la Materia passée en paramètre et la stocke en mémoire afin de la cloner plus tard.
 	// Tout comme le Character, la MateriaSource peut contenir 4 Materias maximum.
 	// Ces dernières ne sont pas forcément uniques.
+	int i = 0;
+	while (i < 4)
+	{
+		if (!_inventory[i])
+		{
+			_inventory[i] = m;
+			return;
+		}
+		i++;
+	}
+	std::cout << "No more space to learn\n";
 }
 
 AMateria *MateriaSource::createMateria(const std::string &type)
