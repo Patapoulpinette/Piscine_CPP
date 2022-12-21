@@ -30,6 +30,7 @@ Ice::~Ice()
 
 Ice &Ice::operator=(const Ice &rhs)
 {
+	(void) rhs;
 	return (*this);
 }
 

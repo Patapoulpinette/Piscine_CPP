@@ -30,6 +30,7 @@ Cure::~Cure()
 
 Cure &Cure::operator=(const Cure &rhs)
 {
+	(void) rhs;
 	return (*this);
 }
 
