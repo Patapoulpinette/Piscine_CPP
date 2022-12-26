@@ -13,20 +13,11 @@
 #include "Cure.hpp"
 #include "ICharacter.hpp"
 
-Cure::Cure()
-{
+Cure::Cure() : AMateria("cure") {}
 
-}
+Cure::Cure(const Cure &src) { *this = src; }
 
-Cure::Cure(const Cure &src)
-{
-	*this = src;
-}
-
-Cure::~Cure()
-{
-
-}
+Cure::~Cure() {}
 
 Cure &Cure::operator=(const Cure &rhs)
 {
@@ -36,9 +27,7 @@ Cure &Cure::operator=(const Cure &rhs)
 
 AMateria *Cure::clone() const
 {
-	Cure *cure = new Cure;
-	*cure = *this;
-	return cure;
+	return new Cure(*this);
 }
 
 void Cure::use(ICharacter &target)

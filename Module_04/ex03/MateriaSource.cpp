@@ -12,32 +12,21 @@
 
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource()
-{
+MateriaSource::MateriaSource() : _inventory() {}
 
-}
+MateriaSource::MateriaSource(const MateriaSource &src) { *this = src; }
 
-MateriaSource::MateriaSource(const MateriaSource &src)
-{
-	*this = src;
-}
-
-MateriaSource::~MateriaSource()
-{
-
-}
+MateriaSource::~MateriaSource() {}
 
 void MateriaSource::learnMateria(AMateria *m)
 {
-	// Copie la Materia passée en paramètre et la stocke en mémoire afin de la cloner plus tard.
-	// Tout comme le Character, la MateriaSource peut contenir 4 Materias maximum.
-	// Ces dernières ne sont pas forcément uniques.
 	int i = 0;
 	while (i < 4)
 	{
-		if (!_inventory[i])
+		if (_inventory[i] == NULL)
 		{
 			_inventory[i] = m;
+			std::cout << _inventory[i]->getType() << " learned\n";
 			return;
 		}
 		i++;
@@ -47,12 +36,16 @@ void MateriaSource::learnMateria(AMateria *m)
 
 AMateria *MateriaSource::createMateria(const std::string &type)
 {
-	// Retourne une nouvelle Materia.
-	// Celle-ci est une copie de celle apprise précédemment par la MateriaSource
-	// et dont le type est le même que celui passé en paramètre.
-	// Retourne 0 si le type est inconnu.
+	int i = 0;
+	while (i < 4)
+	{
+		if (_inventory[i]->getType() == type)
+		{
+			std::cout << type << " created\n";
+			return _inventory[i]->clone();
+		}
+		i++;
+	}
+	std::cout << type << " not created because it hasn't been learned yet\n";
 	return NULL;
 }
-
-// En bref, votre MateriaSource doit pouvoir apprendre des "modèles" de Materias afin de les recréer à volonté.
-// Ainsi, vous serez capable de générer une nouvelle Materia à partir de son type sous forme de chaîne de caractères.

@@ -13,20 +13,11 @@
 #include "Ice.hpp"
 #include "ICharacter.hpp"
 
-Ice::Ice()
-{
+Ice::Ice() : AMateria("ice") {}
 
-}
+Ice::Ice(const Ice &src) { *this = src; }
 
-Ice::Ice(const Ice &src)
-{
-	*this = src;
-}
-
-Ice::~Ice()
-{
-
-}
+Ice::~Ice() {}
 
 Ice &Ice::operator=(const Ice &rhs)
 {
@@ -36,9 +27,7 @@ Ice &Ice::operator=(const Ice &rhs)
 
 AMateria *Ice::clone() const
 {
-	Ice *ice = new Ice;
-	*ice = *this;
-	return ice;
+	return new Ice(*this);
 }
 
 void Ice::use(ICharacter &target)

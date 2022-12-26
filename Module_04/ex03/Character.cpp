@@ -24,7 +24,7 @@ Character::~Character() {}
 Character &Character::operator=(const Character &rhs)
 {
 	_name = rhs._name;
-	for (int i = 4; i < 4; i++)
+	for (int i = 0; i < 4; i++)
 		_inventory[i] = rhs._inventory[i];
 	return (*this);
 }
@@ -36,9 +36,10 @@ void Character::equip(AMateria *m)
 	int i = 0;
 	while (i < 4)
 	{
-		if (!_inventory[i])
+		if (_inventory[i] == NULL)
 		{
 			_inventory[i] = m;
+			std::cout << _inventory[i]->getType() << " equipped\n";
 			return;
 		}
 		i++;
@@ -49,7 +50,15 @@ void Character::equip(AMateria *m)
 void Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < 4)
-		_inventory[idx] = NULL;
+	{
+		if (_inventory[idx] == NULL)
+			std::cout << "Nothing to unequip\n";
+		else
+		{
+			std::cout << _inventory[idx]->getType() << " unequipped\n";
+			_inventory[idx] = NULL;
+		}
+	}
 	else
 		std::cout << "Wrong index: must be between 0 to 3\n";
 }
