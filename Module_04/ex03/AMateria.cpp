@@ -16,9 +16,12 @@ AMateria::AMateria() {}
 
 AMateria::AMateria(const std::string &type) : _type(type) {}
 
-AMateria::AMateria(const AMateria &src) { *this = src; }
-
 AMateria::~AMateria() {}
+
+AMateria::AMateria(const AMateria &src)
+{
+	*this = src;
+}
 
 AMateria &AMateria::operator=(const AMateria &rhs)
 {

@@ -17,9 +17,22 @@ Character::Character() : _inventory() {}
 
 Character::Character(const std::string &name) : _name(name), _inventory() {}
 
-Character::Character(const Character &src) { *this = src; }
+Character::~Character()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (_inventory[i])
+		{
+			delete _inventory[i];
+			_inventory[i] = NULL;
+		}
+	}
+}
 
-Character::~Character() {}
+Character::Character(const Character &src)
+{
+	*this = src;
+}
 
 Character &Character::operator=(const Character &rhs)
 {
