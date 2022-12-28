@@ -18,49 +18,43 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 
-int	main()
+int main()
 {
-	std::cout << "\n--- LEARN TECHNIQUES ---\n";
+	std::cout << "\n--- LEARNING TIME ---\n";
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 
-	ICharacter* me = new Character("me");
-
-	std::cout << "\n--- ME: CREATE, EQUIP, UNEQUIP AND USE MATERIA ---\n";
-	AMateria* tmp;
+	ICharacter*	me = new Character("me");
+	AMateria*	tmp;
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
-	AMateria* temp = tmp;
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 
 	ICharacter* bob = new Character("bob");
 
+	std::cout << "\n--- ME: USE MATERIA ---\n";
 	me->use(0, *bob);
 	me->use(1, *bob);
 
-	me->unequip(2);
-	me->unequip(0);
-	me->use(0, *bob);
-
-	std::cout << "\n--- BOB: EQUIP, UNEQUIP AND USE MATERIA ---\n";
-	bob->equip(tmp);
+	std::cout << "\n--- BOB: EQUIP AND USE MATERIA ---\n";
 	bob->use(0, *me);
-	bob->unequip(0);
 	bob->equip(new Ice());
 	bob->use(0, *me);
 
-	std::cout << "\n--- ALFRED: DEEP COPY OF BOB / USE MATERIA ---\n";
-	ICharacter* alfred;
-	alfred = bob;
-	alfred->use(0, *bob);
-	alfred->use(1, *me);
-	alfred->equip(new Cure());
+	std::cout << "\n--- ALFRED: DEEP COPY OF BOB ---\n";
+	ICharacter*	alfred = new Character(*(Character *)bob);
+	alfred->use(0, *me);
 	alfred->use(1, *me);
 
-	delete temp;
-	delete tmp;
+	std::cout << "\n--- ALFRED: EQUIP, UNEQUIP AND USE MATERIA ---\n";
+	alfred->equip(src->createMateria("cure"));
+	alfred->unequip(0);
+	alfred->use(0, *me);
+	alfred->use(1, *me);
+
+	delete alfred;
 	delete bob;
 	delete me;
 	delete src;
