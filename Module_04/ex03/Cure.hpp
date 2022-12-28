@@ -29,9 +29,6 @@ class Cure : public AMateria
 
 		AMateria *clone() const;
 		void use(ICharacter &target);
-
-	private:
-
 };
 
 #endif //CURE_HPP

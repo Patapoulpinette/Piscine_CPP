@@ -21,13 +21,13 @@ Ice::~Ice() {}
 
 Ice &Ice::operator=(const Ice &rhs)
 {
-	(void) rhs;
+	_type = rhs._type;
 	return (*this);
 }
 
 AMateria *Ice::clone() const
 {
-	return new Ice(*this);
+	return new Ice();
 }
 
 void Ice::use(ICharacter &target)

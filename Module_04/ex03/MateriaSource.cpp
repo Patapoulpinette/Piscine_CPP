@@ -17,13 +17,8 @@ MateriaSource::MateriaSource() : _inventory() {}
 MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < 4; i++)
-	{
-		if (_inventory[i])
-		{
+		if (_inventory[i] != NULL)
 			delete _inventory[i];
-			_inventory[i] = NULL;
-		}
-	}
 }
 
 MateriaSource::MateriaSource(const MateriaSource &src)
@@ -40,32 +35,24 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &rhs)
 
 void MateriaSource::learnMateria(AMateria *m)
 {
-	int i = 0;
-	while (i < 4)
-	{
+	for (int i = 0; i < 4; i++)
 		if (_inventory[i] == NULL)
 		{
 			_inventory[i] = m;
 			std::cout << _inventory[i]->getType() << " learned\n";
 			return;
 		}
-		i++;
-	}
 	std::cout << "No more space to learn\n";
 }
 
 AMateria *MateriaSource::createMateria(const std::string &type)
 {
-	int i = 0;
-	while (i < 4)
-	{
+	for (int i = 0; i < 4; i++)
 		if (_inventory[i]->getType() == type)
 		{
 			std::cout << type << " created\n";
 			return _inventory[i]->clone();
 		}
-		i++;
-	}
 	std::cout << type << " not created because it hasn't been learned yet\n";
 	return NULL;
 }

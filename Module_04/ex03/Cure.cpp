@@ -21,13 +21,13 @@ Cure::~Cure() {}
 
 Cure &Cure::operator=(const Cure &rhs)
 {
-	(void) rhs;
+	_type = rhs._type;
 	return (*this);
 }
 
 AMateria *Cure::clone() const
 {
-	return new Cure(*this);
+	return new Cure();
 }
 
 void Cure::use(ICharacter &target)

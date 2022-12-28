@@ -20,13 +20,8 @@ Character::Character(const std::string &name) : _name(name), _inventory() {}
 Character::~Character()
 {
 	for (int i = 0; i < 4; i++)
-	{
-		if (_inventory[i])
-		{
+		if (_inventory[i] != NULL)
 			delete _inventory[i];
-			_inventory[i] = NULL;
-		}
-	}
 }
 
 Character::Character(const Character &src)
@@ -42,21 +37,20 @@ Character &Character::operator=(const Character &rhs)
 	return (*this);
 }
 
-std::string const &Character::getName() const { return _name; }
+std::string const &Character::getName() const
+{
+	return _name;
+}
 
 void Character::equip(AMateria *m)
 {
-	int i = 0;
-	while (i < 4)
-	{
+	for (int i = 0; i < 4; i++)
 		if (_inventory[i] == NULL)
 		{
 			_inventory[i] = m;
 			std::cout << _inventory[i]->getType() << " equipped\n";
 			return;
 		}
-		i++;
-	}
 	std::cout << "No space left on inventory\n";
 }
 
