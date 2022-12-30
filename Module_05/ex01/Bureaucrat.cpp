@@ -70,11 +70,17 @@ void Bureaucrat::decrementGrade()
 
 void Bureaucrat::signForm(Form &form)
 {
-	if (form.isSigned())
-		std::cout << _name << " signed form " << form.getName() << std::endl;
-	else
-		std::cout << _name << " couldn't sign form " << form.getName()
-			<< " because his grade is too low" << std::endl;
+	try
+	{
+		form.beSigned(*this);
+		if (form.isSigned())
+			std::cout << _name << " signed form " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << _name << " couldn't sign form " << form.getName()
+				  << " because of " << e.what() << std::endl;
+	}
 }
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat const &rhs)

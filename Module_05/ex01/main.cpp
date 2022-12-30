@@ -11,12 +11,13 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
 	try
 	{
-		Bureaucrat Albert("Albert", 50);
+		Bureaucrat Albert("Albert", 30);
 		Bureaucrat Alice("Alice", 1);
 		//Bureaucrat Albane("Albane", 500);
 		Bureaucrat Random;
@@ -34,15 +35,11 @@ int main()
 		std::cout << B << std::endl;
 
 		std::cout << "\n ─── ALBERT ───" << std::endl;
-		A.beSigned(Albert);
 		Albert.signForm(A);
-		B.beSigned(Albert);
 		Albert.signForm(B);
 		Albert.decrementGrade();
 		std::cout << Albert << std::endl;
-		A.beSigned(Albert);
 		Albert.signForm(A);
-		B.beSigned(Albert);
 		Albert.signForm(B);
 
 		std::cout << "\n ─── ALICE ───" << std::endl;
