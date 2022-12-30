@@ -27,7 +27,7 @@ Form::Form(const std::string &name, int signedGrade, int executeGrade) :
 		throw GradeTooLowException();
 }
 
-Form::Form(const Form &src)
+Form::Form(const Form &src) : _name(src._name), _signedGrade(src._signedGrade), _executeGrade(src._executeGrade)
 {
 	*this = src;
 }
@@ -71,15 +71,15 @@ void Form::beSigned(Bureaucrat &bureaucrat)
 		throw GradeTooLowException();
 }
 
-std::ostream &	operator<<(std::ostream & o, Form const & rhs)
+std::ostream &operator<<(std::ostream &o, Form const &rhs)
 {
 	if (rhs.isSigned())
 		o << rhs.getName() << " form is SIGNED, it needs a grade of " << rhs.getSignedGrade()
 		<< " to be signed and a grade of " << rhs.getExecuteGrade()
-		<< " to be executed" << std::endl;
+		<< " to be executed";
 	else
 		o << rhs.getName() << " form is NOT SIGNED, it needs a grade of " << rhs.getSignedGrade()
 		<< " to be signed and a grade of " << rhs.getExecuteGrade()
-		<< " to be executed" << std::endl;
+		<< " to be executed";
 	return (o);
 }

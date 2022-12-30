@@ -63,6 +63,6 @@ class Form
 		const int 			_executeGrade;
 };
 
-std::ostream &	operator<<(std::ostream & o, Form const & rhs);
+std::ostream &operator<<(std::ostream &o, Form const &rhs);
 
 #endif //FORM_HPP

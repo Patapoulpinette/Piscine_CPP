@@ -62,6 +62,6 @@ class Bureaucrat
 		int 		_grade;
 };
 
-std::ostream &	operator<<(std::ostream & o, Bureaucrat const & rhs);
+std::ostream &operator<<(std::ostream &o, Bureaucrat const &rhs);
 
 #endif //BUREAUCRAT_HPP

@@ -19,7 +19,6 @@ Bureaucrat::Bureaucrat() : _name("Random"), _grade(MIN_GRADE)
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade(grade)
 {
-
 	if (_grade < MAX_GRADE)
 		throw GradeTooHighException();
 	else if (_grade > MIN_GRADE)
@@ -78,7 +77,7 @@ void Bureaucrat::signForm(Form &form)
 			<< " because his grade is too low" << std::endl;
 }
 
-std::ostream &	operator<<(std::ostream & o, Bureaucrat const & rhs)
+std::ostream &operator<<(std::ostream &o, Bureaucrat const &rhs)
 {
 	o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade();
 	return (o);
