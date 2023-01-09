@@ -20,6 +20,8 @@
 
 # define MAX_GRADE 1
 # define MIN_GRADE 150
+# define RED "\033[0;31m"
+# define NO_COLOR "\033[0m"
 
 class Form;
 
@@ -43,18 +45,12 @@ class Bureaucrat
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return ("Bureaucrat: grade is too high");
-				}
+				virtual const char *what() const throw();
 		};
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return ("Bureaucrat: grade is too low");
-				}
+				virtual const char *what() const throw();
 		};
 
 	private:

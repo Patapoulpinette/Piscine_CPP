@@ -83,3 +83,15 @@ std::ostream &operator<<(std::ostream &o, Form const &rhs)
 		<< " to be executed";
 	return (o);
 }
+
+// EXCEPTIONS ------------------------------------------------------------------
+
+const char *Form::GradeTooHighException::what() const throw()
+{
+	return (RED"Form: grade is too high"NO_COLOR);
+}
+
+const char *Form::GradeTooLowException::what() const throw()
+{
+	return (RED"Form: grade is too low"NO_COLOR);
+}
