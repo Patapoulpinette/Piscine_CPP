@@ -44,11 +44,11 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &r
 void RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
 	AForm::execute(executor);
-	std::cout << "Makes drill noises...\n";
+	std::cout << "Makes drill noises... ";
 	srand(time(NULL));
 	int nb = rand() % 2;
 	if (nb)
 		std::cout << _target << " has been robotomized" << std::endl;
 	else
-		std::cout << "Execution failed" << std::endl;
+		throw FormExecutionFailedException();
 }

@@ -19,6 +19,8 @@
 
 # define MAX_GRADE 1
 # define MIN_GRADE 150
+# define RED "\033[0;31m"
+# define NO_COLOR "\033[0m"
 
 class Bureaucrat;
 
@@ -45,7 +47,7 @@ class AForm
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("Form: grade is too high");
+					return (RED"Form: grade is too high"NO_COLOR);
 				}
 		};
 		class GradeTooLowException : public std::exception
@@ -53,7 +55,7 @@ class AForm
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("Form: grade is too low");
+					return (RED"Form: grade is too low"NO_COLOR);
 				}
 		};
 		class FormIsNotSignedException : public std::exception
@@ -61,7 +63,7 @@ class AForm
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("Form: form is not signed");
+					return (RED"Form: form is not signed"NO_COLOR);
 				}
 		};
 		class FormIsAlreadySignedException : public std::exception
@@ -69,7 +71,15 @@ class AForm
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("Form: form is already signed");
+					return (RED"Form: form is already signed"NO_COLOR);
+				}
+		};
+		class FormExecutionFailedException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return (RED"Form: execution failed"NO_COLOR);
 				}
 		};
 
