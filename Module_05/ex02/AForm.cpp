@@ -95,3 +95,30 @@ std::ostream &operator<<(std::ostream &o, AForm const &rhs)
 		<< " to be executed";
 	return (o);
 }
+
+// EXCEPTIONS ------------------------------------------------------------------
+
+const char *AForm::GradeTooHighException::what() const throw()
+{
+	return (RED"Form: grade is too high"NO_COLOR);
+}
+
+const char *AForm::GradeTooLowException::what() const throw()
+{
+	return (RED"Form: grade is too low"NO_COLOR);
+}
+
+const char *AForm::FormIsNotSignedException::what() const throw()
+{
+	return (RED"Form: form is not signed"NO_COLOR);
+}
+
+const char *AForm::FormIsAlreadySignedException::what() const throw()
+{
+	return (RED"Form: form is already signed"NO_COLOR);
+}
+
+const char *AForm::FormExecutionFailedException::what() const throw()
+{
+	return (RED"Form: execution failed"NO_COLOR);
+}

@@ -61,6 +61,12 @@ int main()
 		Random.executeForm(B);
 		Random.executeForm(C);
 		Random.executeForm(D);
+
+		std::cout << "\n ─── FORMS ───" << std::endl;
+		std::cout << A << std::endl;
+		std::cout << B << std::endl;
+		std::cout << C << std::endl;
+		std::cout << D << std::endl;
 	}
 	catch (std::exception &e)
 	{

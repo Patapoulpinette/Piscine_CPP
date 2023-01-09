@@ -29,7 +29,7 @@ class Bureaucrat
 {
 	public:
 		Bureaucrat();
-		Bureaucrat(const std::string& name, int grade);
+		Bureaucrat(const std::string &name, int grade);
 		Bureaucrat(const Bureaucrat &src);
 		~Bureaucrat();
 
@@ -46,18 +46,12 @@ class Bureaucrat
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (RED"Bureaucrat: grade is too high"NO_COLOR);
-				}
+				virtual const char *what() const throw();
 		};
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (RED"Bureaucrat: grade is too low"NO_COLOR);
-				}
+				virtual const char *what() const throw();
 		};
 
 	private:

@@ -40,47 +40,32 @@ class AForm
 		int getExecuteGrade() const;
 
 		void beSigned(Bureaucrat &bureaucrat);
-		virtual void execute(Bureaucrat const & executor) const;
+		virtual void execute(Bureaucrat const &executor) const;
 
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (RED"Form: grade is too high"NO_COLOR);
-				}
+				virtual const char *what() const throw();
 		};
 		class GradeTooLowException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (RED"Form: grade is too low"NO_COLOR);
-				}
+				virtual const char *what() const throw();
 		};
 		class FormIsNotSignedException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (RED"Form: form is not signed"NO_COLOR);
-				}
+				virtual const char *what() const throw();
 		};
 		class FormIsAlreadySignedException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (RED"Form: form is already signed"NO_COLOR);
-				}
+				virtual const char *what() const throw();
 		};
 		class FormExecutionFailedException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (RED"Form: execution failed"NO_COLOR);
-				}
+				virtual const char *what() const throw();
 		};
 
 	private:
