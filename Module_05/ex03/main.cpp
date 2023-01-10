@@ -67,6 +67,10 @@ int main()
 		std::cout << *B << std::endl;
 		std::cout << *C << std::endl;
 		std::cout << E << std::endl;
+
+		delete A;
+		delete B;
+		delete C;
 	}
 	catch (std::exception &e)
 	{
