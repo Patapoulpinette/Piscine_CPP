@@ -21,19 +21,15 @@ class Array
 	public:
 		Array() : _n(0) { _array = new T; }
 		Array(unsigned int n) : _n(n) { _array = new T[n]; }
+		virtual ~Array() { delete _array; }
+
 		Array(const Array &src)
 		{
-			unsigned int    i = 0;
-
-			this->_n = src._n;
-			this->_array = new T[this->_n];
-			while (i < this->_n)
-			{
-				this->_array[i] = src._array[i];
-				i++;
-			}
+			_n = src._n;
+			_array = new T[src._n];
+			for (unsigned int i = 0; i < src._n; i++)
+				_array[i] = src._array[i];
 		}
-		virtual ~Array() { delete _array; }
 
 		Array &operator=(const Array &rhs)
 		{
