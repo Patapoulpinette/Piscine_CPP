@@ -16,16 +16,23 @@
 # include <iostream>
 
 template<typename typeT>
-void iter(typeT array[], int size, void (*function)(typeT *arg))
+void iter(typeT array[], int size, void (*function)(typeT const &arg))
 {
 	for (int i = 0; i < size; i++)
-		function(&array[i]);
+		function(array[i]);
 }
 
 template<typename typeT>
-void add_two(typeT *arg)
+void iter2(typeT array[], int size, void (*function)(typeT &arg))
 {
-	*arg = *(arg) + 2;
+	for (int i = 0; i < size; i++)
+		function(array[i]);
 }
+
+template<typename typeT>
+void display(typeT const &arg) { std::cout << arg << " "; }
+
+template<typename typeT>
+void add_two(typeT &arg) { arg = arg + 2; }
 
 #endif //ITER_HPP
