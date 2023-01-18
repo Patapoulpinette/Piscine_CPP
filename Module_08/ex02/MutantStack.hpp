@@ -29,9 +29,6 @@ class MutantStack : public std::stack<T>
 
 		iterator begin() { return this->c.begin(); }
 		iterator end() { return this->c.end(); }
-
-	private:
-
 };
 
 #endif //MUTANTSTACK_HPP

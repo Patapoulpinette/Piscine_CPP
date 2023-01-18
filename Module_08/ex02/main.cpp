@@ -15,7 +15,7 @@
 
 int	main()
 {
-	std::cout << "Tests with MutantStack -----------" << std::endl;
+	std::cout << "─ TESTS WITH MUTANTSTACK ───────────────" << std::endl;
 	{
 		MutantStack<int> mstack;
 
@@ -48,9 +48,9 @@ int	main()
 		std::stack<int> s(mstack);
 	}
 
-// --- To compare the results with list ------------------------------------
+// ─── To compare the results with list ────────────────────────────────────
 
-	std::cout << "Tests with list -----------" << std::endl;
+	std::cout << "\n─ TESTS WITH LIST ──────────────────────" << std::endl;
 	{
 		std::list<int> lst;
 
@@ -81,6 +81,33 @@ int	main()
 			++it;
 		}
 		std::list<int> s(lst);
+	}
+
+// ─── Some other tests ────────────────────────────────────────────────────
+
+	std::cout << "\n─ MY TESTS ─────────────────────────────" << std::endl;
+	{
+		MutantStack<int> mStack;
+		mStack.push(-56);
+		mStack.push(35);
+		mStack.push(-29);
+		mStack.push(22);
+		mStack.push(42);
+		MutantStack<int> copy = mStack;
+
+		std::cout << "mStack size:  " << mStack.size() << "\t\tcopy size:  " << copy.size() << std::endl;
+		std::cout << "mStack begin: " << *mStack.begin() << "\tcopy begin: " << *copy.begin() << std::endl;
+		std::cout << "mStack end:   " << *(mStack.end() - 1) << "\tcopy end:   " << *(copy.end() - 1) << std::endl;
+		std::cout << std::endl;
+
+		for (MutantStack<int>::iterator i = mStack.end() - 1; i >= mStack.begin(); i--)
+			mStack.pop();
+		mStack.push(12);
+
+		std::cout << "mStack size:  " << mStack.size() << "\t\tcopy size:  " << copy.size() << std::endl;
+		std::cout << "mStack begin: " << *mStack.begin() << "\tcopy begin: " << *copy.begin() << std::endl;
+		std::cout << "mStack end:   " << *(mStack.end() - 1) << "\tcopy end:   " << *(copy.end() - 1) << std::endl;
+		std::cout << std::endl;
 	}
 
 	return 0;
