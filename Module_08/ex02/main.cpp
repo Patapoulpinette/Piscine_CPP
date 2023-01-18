@@ -22,11 +22,6 @@ int	main()
 		mstack.push(5);
 		mstack.push(17);
 
-		std::cout << "Access next element: " << mstack.top() << std::endl;
-
-		std::cout << "Remove top element" << std::endl;
-		mstack.pop();
-
 		std::cout << "Return size: " << mstack.size() << std::endl;
 
 		mstack.push(3);
@@ -56,11 +51,6 @@ int	main()
 
 		lst.push_back(5);
 		lst.push_back(17);
-
-		std::cout << "Access first element: " << lst.front() << std::endl;
-
-		std::cout << "Delete first element" << std::endl;
-		lst.pop_front();
 
 		std::cout << "Return size: " << lst.size() << std::endl;
 
