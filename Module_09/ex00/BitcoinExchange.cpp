@@ -46,12 +46,22 @@ void BitcoinExchange::getLines()
 	//get lines (one by one) of input file
 	while (getline(_file, _buffer))
 	{
-		std::cout << _buffer << std::endl;
-		_pos = _buffer.find('|', _savedPos);
-		_line.append(_buffer, 0, _pos - 1);
-		_value.append(_buffer, _pos, _buffer.size() - _pos);
-		_map.insert(std::pair<std::string, float>(_line, std::stof(_value)));//TODO
+		std::cout << "BUFFER: " << _buffer << std::endl;
+		_index = _buffer.find('|', 0);
+		std::cout << "index: " << _index << std::endl;
+		_line.append(_buffer, 0, _index - 1);
+		std::cout << "LINE: " << _line << std::endl;
+		_value.append(_buffer, _index + 1, std::string::npos);
+		std::cout << "VALUE: " << _value << std::endl;
+		//TODO parsing line
+		//TODO parsing value
+//		std::cout << "STOF: " << std::stof(_value) << std::endl;
+//		_map.insert(std::pair<std::string, float>(_line, std::stof(_value)));
+		std::cout << "THERE" << std::endl;
 		_line.clear();
 		_value.clear();
 	}
+	//TOREMOVE (test)
+	for (std::map<std::string, float>::iterator itMap = _map.begin(); itMap != _map.end(); itMap++)
+		std::cout << itMap->first << "| " << itMap->second << std::endl;
 }

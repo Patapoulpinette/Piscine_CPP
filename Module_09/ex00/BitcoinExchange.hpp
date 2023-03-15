@@ -23,7 +23,6 @@ class BitcoinExchange
 		BitcoinExchange(const std::string &fileName);
 		~BitcoinExchange();
 
-
 	private:
 		BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &src);
@@ -37,8 +36,8 @@ class BitcoinExchange
 		std::string						_buffer;
 		std::string						_line;
 		std::string						_value;
-		std::size_t						_pos;
-		std::size_t						_savedPos;
+		std::size_t						_index;
+//		std::size_t						_savedPos;
 };
 
 #endif //BITCOINEXCHANGE_HPP
