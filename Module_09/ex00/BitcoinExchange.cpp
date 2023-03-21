@@ -24,7 +24,7 @@ BitcoinExchange::BitcoinExchange(const std::string &fileName)
 	}
 	if (!_data.is_open())
 	{
-		std::cerr << RED << "Error: " << NO_COLOR << "failed to open " << WHITE_ITALIC << "data.csv " << std::endl;
+		std::cerr << RED << "Error:" << NO_COLOR << " failed to open " << WHITE_ITALIC << "data.csv " << std::endl;
 		exit(-1);
 	}
 }
@@ -47,61 +47,66 @@ BitcoinExchange::~BitcoinExchange()
 
 void BitcoinExchange::calculate()
 {
-	getDataLines();
-	getInputLines();
+	getData();
+	readInputLines();
 }
 
-void BitcoinExchange::getInputLines()
-{
-	//get lines (one by one) of input file
-	while (getline(_file, _buffer))
-	{
-		std::cout << LIGHT_BLUE << "BUFFER: " << _buffer << NO_COLOR << std::endl;
-		_index = _buffer.find('|');
-		std::cout << "index:  " << _index << std::endl;
-		if (_index == 11)
-		{
-			_line.append(_buffer, 0, _index - 1);
-			std::cout << "LINE:   " << _line << std::endl;
-			_value.append(_buffer, _index + 2, std::string::npos);
-			std::cout << "VALUE:  " << _value << std::endl;
-		}
-		else
-		{
-			_line.append("Error: bad input => " + _buffer);
-			std::cout << "LINE:   " << _line << std::endl;
-			_value.append("-1");
-			std::cout << "VALUE:  " << _value << std::endl;
-		}
-		//TODO parsing line
-		//TODO parsing value
-		_line.clear();
-		_value.clear();
-	}
-}
-
-void BitcoinExchange::getDataLines()
+void BitcoinExchange::getData()
 {
 	//get lines (one by one) of data file
 	while (getline(_data, _buffer))
 	{
-		std::cout << "BUFFER: " << _buffer << std::endl;
 		_index = _buffer.find(',', 0);
-		std::cout << "index: " << _index << std::endl;
-		_line.append(_buffer, 0, _index - 1);
-		std::cout << "LINE: " << _line << std::endl;
+		if (_index == std::string::npos)
+		{
+			std::cerr << RED << "Error:" << NO_COLOR << " invalid data file" << std::endl;
+			exit(-1);
+		}
+		_line.append(_buffer, 0, _index);
 		_value.append(_buffer, _index + 1, std::string::npos);
-		std::cout << "VALUE: " << _value << std::endl;
-		//TODO parsing line
-		//TODO parsing value
-		std::cout << "ATOF: " << std::atof(_value.c_str()) << std::endl;
 		_dataMap.insert(std::pair<std::string, float>(_line, std::atof(_value.c_str())));
 		_line.clear();
 		_value.clear();
 	}
-	//TOREMOVE (test)
+	//TOREMOVE (test) ----------------------------------------------------------------------------------
 	std::cout << "----- DISPLAY OF DATA MAP -----\n";
 	for (std::map<std::string, float>::iterator itMap = _dataMap.begin(); itMap != _dataMap.end(); itMap++)
+	{
+		std::cout << std::fixed << std::setprecision(2);
 		std::cout << itMap->first << " | " << itMap->second << std::endl;
+	}
 	std::cout << "----- END OF DATA MAP -----\n";
+	//ENDOFREMOVE --------------------------------------------------------------------------------------
+}
+
+void BitcoinExchange::readInputLines()
+{
+	//get lines (one by one) of input file
+	while (getline(_file, _buffer))
+	{
+		parsing(_buffer);
+	}
+}
+
+void BitcoinExchange::parsing(std::string &str)
+{
+	std::cout << LIGHT_BLUE << "BUFFER: " << str << NO_COLOR << std::endl;
+	_index = str.find('|');
+	std::cout << "index:  " << _index << std::endl;
+	if (_index == 11)
+	{
+		_line.append(str, 0, _index - 1);
+		std::cout << "LINE:   " << _line << std::endl;
+		_value.append(str, _index + 2, std::string::npos);
+		std::cout << "VALUE:  " << _value << std::endl;
+	}
+	else
+	{
+		_line.append("Error: bad input => " + str);
+		std::cout << "LINE:   " << _line << std::endl;
+	}
+	//TODO parsing line
+	//TODO parsing value
+	_line.clear();
+	_value.clear();
 }

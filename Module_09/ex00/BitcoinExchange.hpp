@@ -18,6 +18,7 @@
 # include <string>
 # include <cstdlib>
 # include <map>
+# include <iomanip>
 
 # define LIGHT_BLUE "\033[1;34m"
 # define GREEN "\033[0;32m"
@@ -38,8 +39,9 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &src);
 		BitcoinExchange &operator=(const BitcoinExchange &rhs);
 
-		void getInputLines();
-		void getDataLines();
+		void getData();
+		void readInputLines();
+		void parsing(std::string &str);
 
 		std::ifstream					_file;
 		std::ifstream					_data;
