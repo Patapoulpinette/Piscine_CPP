@@ -29,6 +29,10 @@
 class BitcoinExchange
 {
 	public:
+		typedef std::map<std::string, float>			map;
+		typedef std::map<std::string, float>::iterator	it;
+
+	public:
 		BitcoinExchange(const std::string &fileName);
 		~BitcoinExchange();
 
@@ -39,18 +43,20 @@ class BitcoinExchange
 		BitcoinExchange(const BitcoinExchange &src);
 		BitcoinExchange &operator=(const BitcoinExchange &rhs);
 
-		void getData();
-		void readInputLines();
-		void parsing(std::string &str);
+		void	getData();
+		void	readInputLines();
+		void	parsing(std::string &str);
+		it		findRate(std::string &date);
 
-		std::ifstream					_file;
-		std::ifstream					_data;
-		std::map<std::string, float>	_dataMap;
-		std::string						_buffer;
-		std::string						_line;
-		std::string						_value;
-		std::size_t						_index;
-//		std::size_t						_savedPos;
+	private:
+		std::ifstream	_file;
+		std::ifstream	_data;
+		map				_dataMap;
+		std::string		_buffer;
+		std::string		_date;
+		std::string		_value;
+		std::size_t		_index;
+//		std::size_t		_savedPos;
 };
 
 #endif //BITCOINEXCHANGE_HPP
