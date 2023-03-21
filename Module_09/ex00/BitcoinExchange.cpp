@@ -15,17 +15,17 @@
 BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::BitcoinExchange(const std::string &fileName)
-	: _file(fileName, std::ios::in), _data("data.csv", std::ios::in)
+	: _file(fileName.c_str(), std::ios::in), _data("data.csv", std::ios::in)
 {
 	if (!_file.is_open())
 	{
-		std::cerr << "Error: failed to open " << fileName << std::endl;
-		return;
+		std::cerr << RED << "Error:" << NO_COLOR << " failed to open " << WHITE_ITALIC << fileName << std::endl;
+		exit(-1);
 	}
 	if (!_data.is_open())
 	{
-		std::cerr << "Error: failed to open data.csv " << std::endl;
-		return;
+		std::cerr << RED << "Error: " << NO_COLOR << "failed to open " << WHITE_ITALIC << "data.csv " << std::endl;
+		exit(-1);
 	}
 }
 
@@ -47,8 +47,8 @@ BitcoinExchange::~BitcoinExchange()
 
 void BitcoinExchange::calculate()
 {
+	getDataLines();
 	getInputLines();
-	//getDataLines();
 }
 
 void BitcoinExchange::getInputLines()
@@ -75,20 +75,8 @@ void BitcoinExchange::getInputLines()
 		}
 		//TODO parsing line
 		//TODO parsing value
-		std::cout << "STOF: " << std::stof(_value) << std::endl;
-		_inputMap.insert(std::pair<std::string, float>(_line, std::stof(_value)));
-		std::cout << GREEN << "INPUTMAP: " << _line << " | " << _inputMap[_line] << NO_COLOR << std::endl;
 		_line.clear();
 		_value.clear();
-	}
-	//TOREMOVE (test)
-	std::cout << "----- DISPLAY OF MAP -----\n";
-	for (std::map<std::string, float>::iterator itMap = _inputMap.begin(); itMap != _inputMap.end(); itMap++)
-	{
-		if (itMap->first.find("Error") == std::string::npos)
-			std::cout << itMap->first << "| " << itMap->second << std::endl;
-		else
-			std::cout << itMap->first << std::endl;
 	}
 }
 
@@ -106,13 +94,14 @@ void BitcoinExchange::getDataLines()
 		std::cout << "VALUE: " << _value << std::endl;
 		//TODO parsing line
 		//TODO parsing value
-//		std::cout << "STOF: " << std::stof(_value) << std::endl;
-//		_inputMap.insert(std::pair<std::string, float>(_line, std::stof(_value)));
-		std::cout << "THERE" << std::endl;
+		std::cout << "ATOF: " << std::atof(_value.c_str()) << std::endl;
+		_dataMap.insert(std::pair<std::string, float>(_line, std::atof(_value.c_str())));
 		_line.clear();
 		_value.clear();
 	}
 	//TOREMOVE (test)
+	std::cout << "----- DISPLAY OF DATA MAP -----\n";
 	for (std::map<std::string, float>::iterator itMap = _dataMap.begin(); itMap != _dataMap.end(); itMap++)
-		std::cout << itMap->first << "| " << itMap->second << std::endl;
+		std::cout << itMap->first << " | " << itMap->second << std::endl;
+	std::cout << "----- END OF DATA MAP -----\n";
 }
