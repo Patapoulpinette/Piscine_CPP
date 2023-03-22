@@ -32,24 +32,20 @@ class BitcoinExchange
 		typedef std::map<std::string, float>::iterator	it;
 
 	public:
-		BitcoinExchange(const std::string &fileName);
+		BitcoinExchange();
 		~BitcoinExchange();
 
-		void calculate();
+		void calculate(const std::string &fileName);
 
 	private:
-		BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &src);
 		BitcoinExchange &operator=(const BitcoinExchange &rhs);
 
 		void	getData();
-		void	readInputLines();
 		bool	parsing(std::string &str);
 		it		findRate(std::string &date);
 
 	private:
-		std::ifstream	_file;
-		std::ifstream	_data;
 		map				_dataMap;
 		std::string		_buffer;
 		std::string		_date;

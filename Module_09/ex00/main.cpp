@@ -16,8 +16,8 @@ int main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-		BitcoinExchange btc(argv[1]);
-		btc.calculate();
+		BitcoinExchange btc;
+		btc.calculate(argv[1]);
 	}
 	else
 		std::cerr << "Error: wrong number of arguments: ./btc [file]" << std::endl;

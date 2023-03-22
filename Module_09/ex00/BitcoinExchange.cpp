@@ -12,29 +12,15 @@
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange() {}
-
-BitcoinExchange::BitcoinExchange(const std::string &fileName)
-	: _file(fileName.c_str(), std::ios::in), _data("data.csv", std::ios::in)
+BitcoinExchange::BitcoinExchange()
 {
-	if (!_file.is_open())
-	{
-		std::cerr << RED << "Error:" << NO_COLOR << " failed to open " << WHITE_ITALIC << fileName << std::endl;
-		exit(-1);
-	}
-	if (!_data.is_open())
-	{
-		std::cerr << RED << "Error:" << NO_COLOR << " failed to open " << WHITE_ITALIC << "data.csv " << std::endl;
-		exit(-1);
-	}
+	getData();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &src) { *this = src; }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs)
 {
-	_file = rhs._file;//TODO fix
-	_data = rhs._data;
 	_dataMap = rhs._dataMap;
 	_buffer = rhs._buffer;
 	_date = rhs._date;
@@ -43,20 +29,18 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs)
 	return *this;
 }
 
-BitcoinExchange::~BitcoinExchange()
-{
-	_file.close();
-	_data.close();
-}
-
-void BitcoinExchange::calculate()
-{
-	getData();
-	readInputLines();
-}
+BitcoinExchange::~BitcoinExchange() {}
 
 void BitcoinExchange::getData()
 {
+	//Open data file
+	std::ifstream	_data("data.csv", std::ios::in);
+	if (!_data.is_open())
+	{
+		std::cerr << RED << "Error:" << NO_COLOR << " failed to open " << WHITE_ITALIC << "data.csv " << std::endl;
+		exit(-1);
+	}
+
 	//get lines (one by one) of data file
 	while (getline(_data, _buffer))
 	{
@@ -72,10 +56,19 @@ void BitcoinExchange::getData()
 		_date.clear();
 		_value.clear();
 	}
+	_data.close();
 }
 
-void BitcoinExchange::readInputLines()
+void BitcoinExchange::calculate(const std::string &fileName)
 {
+	//Open input file
+	std::ifstream	_file(fileName.c_str(), std::ios::in);
+	if (!_file.is_open())
+	{
+		std::cerr << RED << "Error:" << NO_COLOR << " failed to open " << WHITE_ITALIC << fileName << std::endl;
+		exit(-1);
+	}
+
 	//get lines (one by one) of input file
 	while (getline(_file, _buffer))
 	{
@@ -99,6 +92,7 @@ void BitcoinExchange::readInputLines()
 		_date.clear();
 		_value.clear();
 	}
+	_file.close();
 }
 
 bool BitcoinExchange::parsing(std::string &str)
