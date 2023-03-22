@@ -22,5 +22,5 @@ int main(int argc, char **argv)
 	else
 		std::cerr << RED << "Error:" << NO_COLOR << " wrong number of arguments: "
 				  << WHITE_ITALIC << "./btc [file]" << NO_COLOR << std::endl;
-	return (0);
+	return 0;
 }
