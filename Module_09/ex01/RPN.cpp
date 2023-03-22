@@ -30,16 +30,21 @@ RPN::~RPN() {}
 
 void RPN::calculate(const std::string &expr)
 {
+	if (expr.empty())
+		return;
 	std::string::const_iterator itExpr = expr.begin();
 	for (;itExpr != expr.end(); itExpr++)
 	{
 		//Parsing ----------------------------------------------------------------------
-		if ((itExpr == expr.begin() && !isdigit(expr[*itExpr]))
-			|| (itExpr == expr.begin() + 1 && !isdigit(expr[*itExpr])))
-		{
-			std::cout << RED << "Error:" << NO_COLOR << " first and second chars must be digits" << std::endl;
-			return;
-		}
+		if (expr[*itExpr] == ' ')
+			continue;
+//		CANNOT DO THAT - MUST CHECK WITH STACK SIZE EVERY TIME BEFORE AN OPERATION
+//		if ((itExpr == expr.begin() && !isdigit(expr[*itExpr]))
+//			|| (itExpr == expr.begin() + 1 && !isdigit(expr[*itExpr])))
+//		{
+//			std::cout << RED << "Error:" << NO_COLOR << " first and second chars must be digits" << std::endl;
+//			return;
+//		}
 		if (!isdigit(expr[*itExpr])
 			&& expr[*itExpr] != '+' && expr[*itExpr] != '-'
 			&& expr[*itExpr] != '*' && expr[*itExpr] != '/')
