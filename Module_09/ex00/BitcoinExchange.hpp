@@ -21,7 +21,6 @@
 # include <iomanip>
 
 # define LIGHT_BLUE "\033[1;34m"
-# define GREEN "\033[0;32m"
 # define RED "\033[0;31m"
 # define WHITE_ITALIC "\033[1;3;37m"
 # define NO_COLOR "\033[0m"
@@ -45,7 +44,7 @@ class BitcoinExchange
 
 		void	getData();
 		void	readInputLines();
-		bool parsing(std::string &str);
+		bool	parsing(std::string &str);
 		it		findRate(std::string &date);
 
 	private:
@@ -56,7 +55,6 @@ class BitcoinExchange
 		std::string		_date;
 		std::string		_value;
 		std::size_t		_index;
-//		std::size_t		_savedPos;
 };
 
 #endif //BITCOINEXCHANGE_HPP
