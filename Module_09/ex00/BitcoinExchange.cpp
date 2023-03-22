@@ -72,9 +72,7 @@ void BitcoinExchange::calculate(const std::string &fileName)
 	//get lines (one by one) of input file
 	while (getline(_file, _buffer))
 	{
-		if (_buffer.empty())
-			continue;
-		if (!_buffer.find("date") || !_buffer.find("value"))
+		if (_buffer.empty() || !_buffer.find("date") || !_buffer.find("value"))
 			continue;
 		if (parsing(_buffer))
 		{
@@ -158,7 +156,7 @@ BitcoinExchange::it BitcoinExchange::findRate(std::string &date)
 	if (itRate == _dataMap.end())
 	{
 		itRate = _dataMap.lower_bound(date);
-		if (itRate != _dataMap.end())
+		if (itRate != _dataMap.end() && itRate != _dataMap.begin())
 			itRate--;
 	}
 	return itRate;
