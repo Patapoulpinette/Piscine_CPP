@@ -20,7 +20,6 @@
 # include <map>
 # include <iomanip>
 
-# define LIGHT_BLUE "\033[1;34m"
 # define RED "\033[0;31m"
 # define WHITE_ITALIC "\033[1;3;37m"
 # define NO_COLOR "\033[0m"

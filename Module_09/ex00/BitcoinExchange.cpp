@@ -72,6 +72,8 @@ void BitcoinExchange::calculate(const std::string &fileName)
 	//get lines (one by one) of input file
 	while (getline(_file, _buffer))
 	{
+		if (_buffer.empty())
+			continue;
 		if (!_buffer.find("date") || !_buffer.find("value"))
 			continue;
 		if (parsing(_buffer))
@@ -98,7 +100,6 @@ void BitcoinExchange::calculate(const std::string &fileName)
 bool BitcoinExchange::parsing(std::string &str)
 {
 	//Split date and value in two strings ------------------------------------------
-	std::cout << LIGHT_BLUE << "BUFFER: " << str << NO_COLOR << std::endl;
 	_index = str.find('|');
 	if (_index == 11 && str[_index - 1] == ' ' && str[_index + 1] == ' ')
 	{
