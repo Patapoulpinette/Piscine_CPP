@@ -45,7 +45,7 @@ class BitcoinExchange
 
 		void	getData();
 		void	readInputLines();
-		void	parsing(std::string &str);
+		bool parsing(std::string &str);
 		it		findRate(std::string &date);
 
 	private:
