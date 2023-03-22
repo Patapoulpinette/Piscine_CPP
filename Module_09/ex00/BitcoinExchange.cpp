@@ -77,7 +77,7 @@ void BitcoinExchange::calculate(const std::string &fileName)
 		if (parsing(_buffer))
 		{
 			it itRate = findRate(_date);
-			if (itRate == _dataMap.end())
+			if (itRate == _dataMap.end() || (itRate == _dataMap.begin() && _date != itRate->first))
 			{
 				std::cout << "Error:" << " no match for this date => " << _date << std::endl;
 				_date.clear();
