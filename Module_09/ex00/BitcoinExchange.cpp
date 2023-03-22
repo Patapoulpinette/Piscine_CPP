@@ -88,8 +88,13 @@ void BitcoinExchange::readInputLines()
 		//std::map<std::string, float>::iterator rate = findRate(_date);
 		it itRate = _dataMap.lower_bound(_date);
 		if (itRate == _dataMap.end())
-			//error if it is the first line of file
-		std::cout << _date << " => " << _value << " = " << std::atof(_value.c_str()) * itRate->second << std::endl;
+		{
+			std::cout << RED << "Error:" << NO_COLOR << " no match for this date => " << _date;
+			_date.clear();
+			_value.clear();
+			continue;
+		}
+		std::cout << GREEN << _date << " => " << _value << " = " << std::strtod(_value.c_str(), NULL) * itRate->second << NO_COLOR << std::endl;
 		_date.clear();
 		_value.clear();
 	}
@@ -102,23 +107,20 @@ void BitcoinExchange::parsing(std::string &str)
 	if (_index == 11)
 	{
 		_date.append(str, 0, _index - 1);
-		std::cout << "LINE:   " << _date << std::endl;
 		_value.append(str, _index + 2, std::string::npos);
-		std::cout << "VALUE:  " << _value << std::endl;
 	}
 	else
 	{
 		_date.append("Error: bad input => " + str);
-		std::cout << "LINE:   " << _date << std::endl;
 	}
 	//TODO parsing line
 	//TODO parsing value
 }
-
-BitcoinExchange::it BitcoinExchange::findRate(std::string &date)
-{
-	it itRate = _dataMap.find(date);
-	if (itRate == _dataMap.end())
-		itRate = _dataMap.lower_bound(date);
-	return itRate;
-}
+//
+//BitcoinExchange::it BitcoinExchange::findRate(std::string &date)
+//{
+//	it itRate = _dataMap.find(date);
+//	if (itRate == _dataMap.end())
+//		itRate = _dataMap.lower_bound(date);
+//	return itRate;
+//}
