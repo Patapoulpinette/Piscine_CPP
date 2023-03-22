@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 		btc.calculate(argv[1]);
 	}
 	else
-		std::cerr << "Error: wrong number of arguments: ./btc [file]" << std::endl;
+		std::cerr << RED << "Error:" << NO_COLOR << " wrong number of arguments: "
+				  << WHITE_ITALIC << "./btc [file]" << NO_COLOR << std::endl;
 	return (0);
 }
