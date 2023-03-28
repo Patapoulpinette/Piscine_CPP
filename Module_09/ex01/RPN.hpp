@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PISCINE_CPP_RPN_HPP
-# define PISCINE_CPP_RPN_HPP
+#ifndef RPN_HPP
+# define RPN_HPP
 
 # include <string>
 # include <iostream>
 # include <stack>
+# include <cstdlib>
+# include <limits>
 
 # define RED "\033[0;31m"
 # define WHITE_ITALIC "\033[1;3;37m"
@@ -33,7 +35,10 @@ class RPN
 		RPN(const RPN &src);
 		RPN &operator=(const RPN &rhs);
 
-		std::stack<int> _stack;
+		std::stack<double>	_stack;
+		double				_num1;
+		double				_num2;
+		double	 			_result;
 };
 
-#endif //PISCINE_CPP_RPN_HPP
+#endif //RPN_HPP
