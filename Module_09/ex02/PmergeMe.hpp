@@ -60,4 +60,15 @@ class PmergeMe
 		T	_list;
 };
 
+bool						parsing(std::vector<std::string> &args);
+
+template<typename T, typename U>
+T	convert(U &strVector)
+{
+	T uIntVector;
+	for (typename U::iterator it = strVector.begin(); it != strVector.end(); it++)
+		uIntVector.push_back(static_cast<int>(std::strtod(it->c_str(), NULL)));
+	return uIntVector;
+}
+
 #endif //PMERGEME_HPP
