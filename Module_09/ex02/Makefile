@@ -21,7 +21,7 @@ HEADFILE = $(shell find . -name "*.hpp")
 
 CPPFLAGS = -Wall -Wextra -Werror
 CPPFLAGS += -std=c++98
-#CPPFLAGS += -fsanitize=address -g3
+CPPFLAGS += -fsanitize=address -g3
 
 # **************************************************************************** #
 #                                    COLORS                                    #

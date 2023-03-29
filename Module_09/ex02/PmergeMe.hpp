@@ -27,17 +27,36 @@ template<class T>
 class PmergeMe
 {
 	public:
-		PmergeMe(T &list);
-		~PmergeMe();
+		PmergeMe(T &list) : _list(list) {}
+		~PmergeMe() {}
 
-		void sort();
-		void print(const std::string &msg);
+		void sort()
+		{
+			print("Input");
+		}
+
+		void print(const std::string &msg)
+		{
+			std::cout << msg << ": ";
+//			for (size_t i = 0; i < list.size(); i++)
+//				std::cout << list[i] << " ";
+			for (typename T::iterator it = _list.begin(); it != _list.end(); it++)
+				std::cout << *it << " ";
+			std::cout << std::endl;
+		}
 
 	private:
-		PmergeMe();
-		PmergeMe(const PmergeMe &src);
-		PmergeMe &operator=(const PmergeMe &rhs);
+		PmergeMe() {}
+		PmergeMe(const PmergeMe &src) { *this = src; }
 
+		PmergeMe &operator=(const PmergeMe &rhs)
+		{
+			//TODO at the end
+			(void) rhs;
+			return *this;
+		}
+
+	private:
 		T	_list;
 };
 

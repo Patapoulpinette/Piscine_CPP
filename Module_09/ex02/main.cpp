@@ -19,7 +19,10 @@ bool parsing(std::vector<std::string> &args)
 	for (std::vector<std::string>::iterator it = args.begin(); it != args.end(); it++)
 	{
 		if (it->empty())
-			return false;//TODO ou continue je sais pas
+		{
+			std::cout << RED << "Error:" << NO_COLOR << " only digits allowed" << std::endl;
+			return false;
+		}
 		for (std::string::iterator ite = it->begin(); ite != it->end(); ite++)
 		{
 			if (!isdigit(*ite))
@@ -38,74 +41,26 @@ bool parsing(std::vector<std::string> &args)
 	return true;
 }
 
-int main(int argc, char **argv)
+std::vector<unsigned int> convert(std::vector<std::string> &strVector)
 {
-	std::vector<std::string> strVector(argv + 1, argv + argc - 1);
-	if (!parsing(strVector))
-		return 1;
-	//TODO convert vector<string> to vector<uint>
-//	PmergeMe< std::vector<unsigned int> > vector(uintVector);
-//	PmergeMe< std::deque<unsigned int> > deque(uintDeque);
-//	vector.sort;
-//	deque.sort;
+	std::vector<unsigned int> uIntVector;
+	for (std::vector<std::string>::iterator it = strVector.begin(); it != strVector.end(); it++)
+		uIntVector.push_back(static_cast<int>(std::strtod(it->c_str(), NULL)));
+	return uIntVector;
 }
 
-//MERGE-INSERTION ALGO in JAVA -----------------------------------
-
-//public static final int K = 5;
-//public static void insertionSort(int A[], int p, int q) {
-//	for (int i = p; i < q; i++) {
-//		int tempVal = A[i + 1];
-//		int j = i + 1;
-//		while (j > p && A[j - 1] > tempVal) {
-//			A[j] = A[j - 1];
-//			j--;
-//		}
-//		A[j] = tempVal;
-//	}
-//	int[] temp = Arrays.copyOfRange(A, p, q +1);
-//	Arrays.stream(temp).forEach(i -> System.out.print(i + " "));
-//	System.out.println();
-//}
-//
-//public static void merge(int A[], int p, int q, int r) {
-//	int n1 = q - p + 1;
-//	int n2 = r - q;
-//	int[] LA = Arrays.copyOfRange(A, p, q +1);
-//	int[] RA = Arrays.copyOfRange(A, q+1, r +1);
-//	int RIDX = 0;
-//	int LIDX = 0;
-//	for (int i = p; i < r - p + 1; i++) {
-//		if (RIDX == n2) {
-//			A[i] = LA[LIDX];
-//			LIDX++;
-//		} else if (LIDX == n1) {
-//			A[i] = RA[RIDX];
-//			RIDX++;
-//		} else if (RA[RIDX] > LA[LIDX]) {
-//			A[i] = LA[LIDX];
-//			LIDX++;
-//		} else {
-//			A[i] = RA[RIDX];
-//			RIDX++;
-//		}
-//	}
-//}
-//
-//public static void sort(int A[], int p, int r) {
-//	if (r - p > K) {
-//		int q = (p + r) / 2;
-//		sort(A, p, q);
-//		sort(A, q + 1, r);
-//		merge(A, p, q, r);
-//	} else {
-//		insertionSort(A, p, r);
-//	}
-//}
-//
-//public static void main(String string[]) {
-//	int[] A = { 2, 5, 1, 6, 7, 3, 8, 4, 9 };
-//	sort(A, 0, A.length - 1);
-//	Arrays.stream(A).forEach(i -> System.out.print(i + " "));
-//}
-//-------------------------------------------------------------
+int main(int argc, char **argv)
+{
+	if (argc > 1)
+	{
+		std::vector<std::string> strVector(argv + 1, argv + argc);
+		if (!parsing(strVector))
+			return 1;
+		std::vector<unsigned int>				uIntVector = convert(strVector);
+		PmergeMe<std::vector<unsigned int> >	vector(uIntVector);
+//		PmergeMe<std::deque<unsigned int> >		deque(uIntDeque);
+		vector.sort();
+//		deque.sort();
+	}
+	return 0;
+}
