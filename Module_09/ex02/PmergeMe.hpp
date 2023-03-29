@@ -23,6 +23,8 @@
 # define RED "\033[0;31m"
 # define NO_COLOR "\033[0m"
 
+# define K 5
+
 template<class T>
 class PmergeMe
 {
@@ -30,10 +32,68 @@ class PmergeMe
 		PmergeMe(T &list) : _list(list) {}
 		~PmergeMe() {}
 
-		void sort()
+		T getList() const
+		{
+			return _list;
+		}
+
+		void sort(int p, int r)
 		{
 			//TODO sorting algo
+			if (r - p > K)
+			{
+				int q = (p + r) / 2;
+				sort(_list, p, q);
+				sort(_list, q + 1, r);
+				merge(_list, p, q, r);
+			}
+			else
+				insertionSort(_list, p, r);
 		}
+
+		//TODO translate in c++
+//		void insertionSort(int p, int q)
+//		{
+//			for (int i = p; i < q; i++)
+//			{
+//				int tempVal = A[i + 1];
+//				int j = i + 1;
+//				while (j > p && A[j - 1] > tempVal) {
+//					A[j] = A[j - 1];
+//					j--;
+//				}
+//				A[j] = tempVal;
+//			}
+//			int[] temp = Arrays.copyOfRange(A, p, q +1);
+//			Arrays.stream(temp).forEach(i -> System.out.print(i + " "));
+//			System.out.println();
+//		}
+//
+//		void merge(int p, int q, int r)
+//		{
+//			int n1 = q - p + 1;
+//			int n2 = r - q;
+//			int[] LA = Arrays.copyOfRange(A, p, q +1);
+//			int[] RA = Arrays.copyOfRange(A, q+1, r +1);
+//			int RIDX = 0;
+//			int LIDX = 0;
+//			for (int i = p; i < r - p + 1; i++)
+//			{
+//				if (RIDX == n2) {
+//					A[i] = LA[LIDX];
+//					LIDX++;
+//				} else if (LIDX == n1) {
+//					A[i] = RA[RIDX];
+//					RIDX++;
+//				} else if (RA[RIDX] > LA[LIDX]) {
+//					A[i] = LA[LIDX];
+//					LIDX++;
+//				} else {
+//					A[i] = RA[RIDX];
+//					RIDX++;
+//				}
+//			}
+//		}
 
 		void print(const std::string &msg)
 		{
