@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbouron <dbouron@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/29 14:42:02 by dbouron           #+#    #+#             */
+/*   Updated: 2023/03/29 14:42:02 by dbouron          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
@@ -6,6 +17,11 @@
 # include <string>
 # include <vector>
 # include <deque>
+# include <cstdlib>
+# include <limits>
+
+# define RED "\033[0;31m"
+# define NO_COLOR "\033[0m"
 
 template<class T>
 class PmergeMe

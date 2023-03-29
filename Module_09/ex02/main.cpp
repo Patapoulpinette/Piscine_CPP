@@ -1,13 +1,48 @@
-//
-// Created by Delphine Bouron on 28/03/2023.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbouron <dbouron@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/29 14:43:01 by dbouron           #+#    #+#             */
+/*   Updated: 2023/03/29 14:43:01 by dbouron          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+bool parsing(std::vector<std::string> &args)
+{
+	if (args.empty())
+		return false;
+	for (std::vector<std::string>::iterator it = args.begin(); it != args.end(); it++)
+	{
+		if (it->empty())
+			return false;//TODO ou continue je sais pas
+		for (std::string::iterator ite = it->begin(); ite != it->end(); ite++)
+		{
+			if (!isdigit(*ite))
+			{
+				std::cout << RED << "Error:" << NO_COLOR << " only digits allowed" << std::endl;
+				return false;
+			}
+		}
+		double tmp = std::strtod(it->c_str(), NULL);
+		if (tmp < 0 || tmp > std::numeric_limits<int>::max())
+		{
+			std::cout << RED << "Error:" << NO_COLOR << " must be a positive integer" << std::endl;
+			return false;
+		}
+	}
+	return true;
+}
 
 int main(int argc, char **argv)
 {
 	std::vector<std::string> strVector(argv + 1, argv + argc - 1);
-	//TODO parsing
+	if (!parsing(strVector))
+		return 1;
 	//TODO convert vector<string> to vector<uint>
 //	PmergeMe< std::vector<unsigned int> > vector(uintVector);
 //	PmergeMe< std::deque<unsigned int> > deque(uintDeque);
