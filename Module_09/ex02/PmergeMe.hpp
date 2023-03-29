@@ -32,14 +32,12 @@ class PmergeMe
 
 		void sort()
 		{
-			print("Input");
+			//TODO sorting algo
 		}
 
 		void print(const std::string &msg)
 		{
 			std::cout << msg << ": ";
-//			for (size_t i = 0; i < list.size(); i++)
-//				std::cout << list[i] << " ";
 			for (typename T::iterator it = _list.begin(); it != _list.end(); it++)
 				std::cout << *it << " ";
 			std::cout << std::endl;

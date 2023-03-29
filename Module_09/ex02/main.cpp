@@ -24,8 +24,12 @@ int main(int argc, char **argv)
 		std::deque<unsigned int> uIntDeque = convert<std::deque<unsigned int>, std::deque<std::string> >(strDeque);
 		PmergeMe<std::vector<unsigned int> > vector(uIntVector);
 		PmergeMe<std::deque<unsigned int> > deque(uIntDeque);
+		vector.print("input of vector");
+		deque.print("input of deque"); //TODO to remove (test)
 		vector.sort();
 		deque.sort();
+		vector.print("Sorted with vector");
+		deque.print("Sorted with Deque"); //TODO to remove (test)
 	}
 	return 0;
 }
