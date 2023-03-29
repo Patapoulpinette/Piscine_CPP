@@ -42,10 +42,15 @@ bool parsing(std::vector<std::string> &args)
 }
 
 
-//MERGE-INSERTION ALGO in JAVA -----------------------------------
+//MERGE-INSERTION ALGO in C++ ---------------------------------
 
-//public static final int K = 5;
-//public static void insertionSort(int A[], int p, int q) {
+//#include <iostream>
+//#include <algorithm>
+//using namespace std;
+//
+//const int K = 5;
+//
+//void insertionSort(int A[], int p, int q) {
 //	for (int i = p; i < q; i++) {
 //		int tempVal = A[i + 1];
 //		int j = i + 1;
@@ -55,19 +60,25 @@ bool parsing(std::vector<std::string> &args)
 //		}
 //		A[j] = tempVal;
 //	}
-//	int[] temp = Arrays.copyOfRange(A, p, q +1);
-//	Arrays.stream(temp).forEach(i -> System.out.print(i + " "));
-//	System.out.println();
+//	for (int i = p; i <= q; i++) {
+//		cout << A[i] << " ";
+//	}
+//	cout << endl;
 //}
 //
-//public static void merge(int A[], int p, int q, int r) {
+//void merge(int A[], int p, int q, int r) {
 //	int n1 = q - p + 1;
 //	int n2 = r - q;
-//	int[] LA = Arrays.copyOfRange(A, p, q +1);
-//	int[] RA = Arrays.copyOfRange(A, q+1, r +1);
+//	int LA[n1], RA[n2];
+//	for (int i = 0; i < n1; i++) {
+//		LA[i] = A[p + i];
+//	}
+//	for (int i = 0; i < n2; i++) {
+//		RA[i] = A[q + i + 1];
+//	}
 //	int RIDX = 0;
 //	int LIDX = 0;
-//	for (int i = p; i < r - p + 1; i++) {
+//	for (int i = p; i <= r; i++) {
 //		if (RIDX == n2) {
 //			A[i] = LA[LIDX];
 //			LIDX++;
@@ -84,7 +95,7 @@ bool parsing(std::vector<std::string> &args)
 //	}
 //}
 //
-//public static void sort(int A[], int p, int r) {
+//void sort(int A[], int p, int r) {
 //	if (r - p > K) {
 //		int q = (p + r) / 2;
 //		sort(A, p, q);
@@ -95,9 +106,13 @@ bool parsing(std::vector<std::string> &args)
 //	}
 //}
 //
-//public static void main(String string[]) {
-//	int[] A = { 2, 5, 1, 6, 7, 3, 8, 4, 9 };
-//	sort(A, 0, A.length - 1);
-//	Arrays.stream(A).forEach(i -> System.out.print(i + " "));
+//int main() {
+//	int A[] = { 2, 5, 1, 6, 7, 3, 8, 4, 9 };
+//	int n = sizeof(A)/sizeof(A[0]);
+//	sort(A, 0, n - 1);
+//	for (int i = 0; i < n; i++) {
+//		cout << A[i] << " ";
+//	}
+//	return 0;
 //}
 //-------------------------------------------------------------

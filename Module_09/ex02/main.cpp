@@ -26,8 +26,8 @@ int main(int argc, char **argv)
 		PmergeMe<std::deque<unsigned int> > deque(uIntDeque);
 		vector.print("input of vector");
 		deque.print("input of deque"); //TODO to remove (test)
-		vector.sort(0, static_cast<int >(vector.getList().size()));
-		deque.sort(0, static_cast<int >(deque.getList().size()));
+		vector.sort(vector.getList(), 0, static_cast<int>(vector.getList().size()));
+		deque.sort(deque.getList(), 0, static_cast<int>(deque.getList().size()));
 		vector.print("Sorted with vector");
 		deque.print("Sorted with Deque"); //TODO to remove (test)
 	}

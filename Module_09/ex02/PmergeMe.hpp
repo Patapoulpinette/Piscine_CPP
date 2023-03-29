@@ -32,68 +32,72 @@ class PmergeMe
 		PmergeMe(T &list) : _list(list) {}
 		~PmergeMe() {}
 
-		T getList() const
-		{
-			return _list;
-		}
+		T &getList() { return _list; }
 
-		void sort(int p, int r)
+		void sort(T &list, int p, int r)
 		{
 			//TODO sorting algo
 			if (r - p > K)
 			{
 				int q = (p + r) / 2;
-				sort(_list, p, q);
-				sort(_list, q + 1, r);
-				merge(_list, p, q, r);
+				sort(list, p, q);
+				sort(list, q + 1, r);
+				merge(list, p, q, r);
 			}
 			else
-				insertionSort(_list, p, r);
+				insertionSort(list, p, r);
 		}
 
 		//TODO translate in c++
-//		void insertionSort(int p, int q)
-//		{
-//			for (int i = p; i < q; i++)
-//			{
-//				int tempVal = A[i + 1];
-//				int j = i + 1;
-//				while (j > p && A[j - 1] > tempVal) {
-//					A[j] = A[j - 1];
-//					j--;
-//				}
-//				A[j] = tempVal;
-//			}
-//			int[] temp = Arrays.copyOfRange(A, p, q +1);
-//			Arrays.stream(temp).forEach(i -> System.out.print(i + " "));
-//			System.out.println();
-//		}
-//
-//		void merge(int p, int q, int r)
-//		{
-//			int n1 = q - p + 1;
-//			int n2 = r - q;
-//			int[] LA = Arrays.copyOfRange(A, p, q +1);
-//			int[] RA = Arrays.copyOfRange(A, q+1, r +1);
-//			int RIDX = 0;
-//			int LIDX = 0;
-//			for (int i = p; i < r - p + 1; i++)
-//			{
-//				if (RIDX == n2) {
-//					A[i] = LA[LIDX];
-//					LIDX++;
-//				} else if (LIDX == n1) {
-//					A[i] = RA[RIDX];
-//					RIDX++;
-//				} else if (RA[RIDX] > LA[LIDX]) {
-//					A[i] = LA[LIDX];
-//					LIDX++;
-//				} else {
-//					A[i] = RA[RIDX];
-//					RIDX++;
-//				}
-//			}
-//		}
+		void insertionSort(T &list, int p, int q)
+		{
+//			(void) list, (void) p, (void) q;
+			for (int i = p; i < q; i++)
+			{
+				int tempVal = list[i + 1];
+				int j = i + 1;
+				while (j > p && static_cast<int>(list[j - 1]) > tempVal) {
+					list[j] = list[j - 1];
+					j--;
+				}
+				list[j] = tempVal;
+			}
+			for (int i = p; i <= q; i++)
+				std::cout << "[" << i << "]" << list[i] << " ";
+			std::cout << std::endl;
+		}
+
+		void merge(T &list, int p, int q, int r)
+		{
+//			(void) list, (void) p, (void) q, (void) r;
+			int n1 = q - p + 1;
+			int n2 = r - q;
+			int LA[n1], RA[n2];
+			for (int i = 0; i < n1; i++) {
+				LA[i] = list[p + i];
+			}
+			for (int i = 0; i < n2; i++) {
+				RA[i] = list[q + i + 1];
+			}
+			int RIDX = 0;
+			int LIDX = 0;
+			for (int i = p; i <= r; i++) {
+				if (RIDX == n2) {
+					list[i] = LA[LIDX];
+					LIDX++;
+				} else if (LIDX == n1) {
+					list[i] = RA[RIDX];
+					RIDX++;
+				} else if (RA[RIDX] > LA[LIDX]) {
+					list[i] = LA[LIDX];
+					LIDX++;
+				} else {
+					list[i] = RA[RIDX];
+					RIDX++;
+				}
+			}
+			std::cout << "END of MERGE\n";//TODO remove (test)
+		}
 
 		void print(const std::string &msg)
 		{
