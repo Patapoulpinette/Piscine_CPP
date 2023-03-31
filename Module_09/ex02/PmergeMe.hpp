@@ -19,6 +19,7 @@
 # include <deque>
 # include <cstdlib>
 # include <limits>
+# include <ctime>
 
 # define RED "\033[0;31m"
 # define NO_COLOR "\033[0m"
@@ -36,7 +37,6 @@ class PmergeMe
 
 		void sort(T &list, int p, int r)
 		{
-			//TODO sorting algo
 			if (r - p > K)
 			{
 				int q = (p + r) / 2;
@@ -48,40 +48,37 @@ class PmergeMe
 				insertionSort(list, p, r);
 		}
 
-		//TODO translate in c++
 		void insertionSort(T &list, int p, int q)
 		{
-//			(void) list, (void) p, (void) q;
 			for (int i = p; i < q; i++)
 			{
 				int tempVal = list[i + 1];
 				int j = i + 1;
-				while (j > p && static_cast<int>(list[j - 1]) > tempVal) {
+				while (j > p && static_cast<int>(list[j - 1]) > tempVal)
+				{
 					list[j] = list[j - 1];
 					j--;
 				}
 				list[j] = tempVal;
 			}
-			for (int i = p; i <= q; i++)
-				std::cout << "[" << i << "]" << list[i] << " ";
-			std::cout << std::endl;
+//			for (int i = p; i <= q; i++)
+//				std::cout << "[" << i << "]" << list[i] << " ";
+//			std::cout << std::endl;
 		}
 
 		void merge(T &list, int p, int q, int r)
 		{
-//			(void) list, (void) p, (void) q, (void) r;
 			int n1 = q - p + 1;
 			int n2 = r - q;
 			int LA[n1], RA[n2];
-			for (int i = 0; i < n1; i++) {
+			for (int i = 0; i < n1; i++)
 				LA[i] = list[p + i];
-			}
-			for (int i = 0; i < n2; i++) {
+			for (int i = 0; i < n2; i++)
 				RA[i] = list[q + i + 1];
-			}
 			int RIDX = 0;
 			int LIDX = 0;
-			for (int i = p; i <= r; i++) {
+			for (int i = p; i <= r; i++)
+			{
 				if (RIDX == n2) {
 					list[i] = LA[LIDX];
 					LIDX++;
@@ -96,7 +93,6 @@ class PmergeMe
 					RIDX++;
 				}
 			}
-			std::cout << "END of MERGE\n";//TODO remove (test)
 		}
 
 		void print(const std::string &msg)
