@@ -65,28 +65,33 @@ class PmergeMe
 
 		void merge(T &list, int p, int q, int r)
 		{
-			int n1 = q - p + 1;
-			int n2 = r - q;
-			int LA[n1], RA[n2];
+			//Calculating the size of sub-arrays
+			int n1 = q - p + 1;					// size of list[p..q]
+			int n2 = r - q;						// size of list[q+1..r]
+
+			//Copy of sub-arrays left and right
+			int Llist[n1], Rlist[n2];			// creation of 2 temporary sub-arrays
 			for (int i = 0; i < n1; i++)
-				LA[i] = list[p + i];
+				Llist[i] = list[p + i];
 			for (int i = 0; i < n2; i++)
-				RA[i] = list[q + i + 1];
-			int RIDX = 0;
-			int LIDX = 0;
-			for (int i = p; i <= r; i++)
+				Rlist[i] = list[q + i + 1];
+
+			//Fusion of sub-arrays left and right
+			int RIDX = 0;						// index or right array
+			int LIDX = 0;						//index or left array
+			for (int i = p; i <= r; i++)		// i: index of list array
 			{
 				if (RIDX == n2) {
-					list[i] = LA[LIDX];
+					list[i] = Llist[LIDX];
 					LIDX++;
 				} else if (LIDX == n1) {
-					list[i] = RA[RIDX];
+					list[i] = Rlist[RIDX];
 					RIDX++;
-				} else if (RA[RIDX] > LA[LIDX]) {
-					list[i] = LA[LIDX];
+				} else if (Rlist[RIDX] > Llist[LIDX]) {
+					list[i] = Llist[LIDX];
 					LIDX++;
 				} else {
-					list[i] = RA[RIDX];
+					list[i] = Rlist[RIDX];
 					RIDX++;
 				}
 			}
