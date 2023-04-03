@@ -46,10 +46,9 @@ int main(int argc, char **argv)
 		dequeTime = clock() - dequeTime;
 
 		//Display outputs ------------------------------------------------------
-		vector.print("Sorted with vector");
-		deque.print("Sorted with Deque"); //TODO to remove (test)
-		std::cout << "Time to sort with vector: " << static_cast<float>(vectorTime) / CLOCKS_PER_SEC * 1000 << " ms" << std::endl;
-		std::cout << "Time to sort with deque: " << static_cast<float>(dequeTime) / CLOCKS_PER_SEC * 1000 << " ms" << std::endl;
+		vector.print("Sorted");
+		std::cout << "Time to sort " << uIntVector.size() << " elements with std::vector: " << static_cast<float>(vectorTime) / CLOCKS_PER_SEC * 1000 << " ms" << std::endl;
+		std::cout << "Time to sort " << uIntDeque.size() << " elements with std::deque: " << static_cast<float>(dequeTime) / CLOCKS_PER_SEC * 1000 << " ms" << std::endl;
 	}
 	return 0;
 }

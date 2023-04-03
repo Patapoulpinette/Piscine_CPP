@@ -61,9 +61,6 @@ class PmergeMe
 				}
 				list[j] = tempVal;
 			}
-//			for (int i = p; i <= q; i++)
-//				std::cout << "[" << i << "]" << list[i] << " ";
-//			std::cout << std::endl;
 		}
 
 		void merge(T &list, int p, int q, int r)
@@ -109,8 +106,7 @@ class PmergeMe
 
 		PmergeMe &operator=(const PmergeMe &rhs)
 		{
-			//TODO at the end
-			(void) rhs;
+			_list = rhs._list;
 			return *this;
 		}
 
@@ -118,10 +114,10 @@ class PmergeMe
 		T	_list;
 };
 
-bool						parsing(std::vector<std::string> &args);
+bool parsing(std::vector<std::string> &args);
 
 template<typename T, typename U>
-T	convert(U &strVector)
+T convert(U &strVector)
 {
 	T uIntVector;
 	for (typename U::iterator it = strVector.begin(); it != strVector.end(); it++)

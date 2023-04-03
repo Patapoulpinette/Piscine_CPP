@@ -38,5 +38,17 @@ bool parsing(std::vector<std::string> &args)
 			return false;
 		}
 	}
+	//Checking duplicates
+	for (std::vector<std::string>::iterator it = args.begin(); it != args.end(); it++)
+	{
+		for (std::vector<std::string>::iterator ite = it + 1; ite != args.end(); ite++)
+		{
+			if (std::strtod(it->c_str(), NULL) == std::strtod(ite->c_str(), NULL))
+			{
+				std::cout << RED << "Error:" << NO_COLOR << " no duplicates allowed" << std::endl;
+				return false;
+			}
+		}
+	}
 	return true;
 }
